@@ -1,0 +1,19 @@
+{% extends "/admin/base/base.html" %}
+{% block left_navbar %}
+    {% include "admin/base/content_navbar.html" %}
+{% endblock %}
+{% block frontend %}
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/My97DatePicker/4.8/WdatePicker.js") }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/datatables/1.10.0/jquery.dataTables.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static",filename="admin/lib/laypage/1.2/laypage.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#menu-product dt").addClass("selected");
+            $("#menu-product dd").css("display", "block");
+            $("#menu-product #product").addClass("current");
+            $("#content").addClass("current")
+        });
+    </script>
+{% endblock %}

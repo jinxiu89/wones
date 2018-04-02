@@ -1,0 +1,57 @@
+<aside class="Hui-aside">
+        <div class="menu_dropdown bk_2">
+            <dl id="menu-setting">
+                <dt><i class="Hui-iconfont">&#xe62e;</i> 系统设置<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <li id="system_setting"><a href="" title="站点配置">站点配置</a></li>
+                        <li id="system_shielding"><a href="" title="屏蔽敏感词">屏蔽敏感词</a></li>
+                        <li id="system_statistics"><a href="" title="统计配置">统计配置</a></li>
+                        <!--todo::<li><a href="picture-list.html" title="地图配置">地图配置</a></li> 利用百度地图或者谷歌地图标记地理未知,暂时忽略-->
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-category">
+                <dt><i class="Hui-iconfont">&#xe681;</i> 栏目管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <li id="category_list"><a href="{{ url_for('admin.system_category') }}" title="栏目管理">栏目管理</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-system">
+                <dt><i class="Hui-iconfont">&#xe6b5;</i> 管理员设定<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <!--<li id="permission_category"><a href="" title="权限分类">权限分类</a></li>-->
+                        <!--<li id="manger_permission"><a href="" title="权限管理">权限管理</a></li>-->
+                        <!--<li id="manger_role"><a href="" title="角色管理">角色管理</a></li>-->
+                        <li id="manger_list"><a href="{{ url_for('admin.system_user') }}" title="管理员列表">管理员列表</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-database">
+                <dt><i class="Hui-iconfont">&#xe6b5;</i> 数据管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <li id="database-list"><a href="" title="品牌管理">数据库备份列表</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl id="menu-logs">
+                <dt><i class="Hui-iconfont">&#xe623;</i> 日志管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i>
+                </dt>
+                <dd>
+                    <ul>
+                        <li id="system_logs"><a href="" title="单页宣传">系统日志</a></li>
+                        <li id="users_logs"><a href="" title="活动宣传">用户日志</a></li>
+                        <li id="vip_logs"><a href="" title="活动宣传">会员日志</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </aside>

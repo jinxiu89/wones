@@ -1,0 +1,14 @@
+{% extends "/admin/base/base.html" %}
+{% block left_navbar %}
+    {% include "admin/base/system_navbar.html" %}
+{% endblock %}
+{% block frontend %}
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/h-ui.admin/js/system_permission.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static",filename="admin/h-ui.admin/js/dialog.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#system").addClass("current")
+        });
+    </script>
+{% endblock %}

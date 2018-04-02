@@ -1,0 +1,200 @@
+{% extends "admin/base/base_add.html" %}
+{% block form %}
+    <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.language_id.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">{{ form.language_id }}</span>
+                {% for error in form.language_id.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.cid.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">{{ form.cid }}</span>
+                {% for error in form.cid.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.sort.label }}：</div>
+            <div class="formControls col-xs-2 col-sm-2">
+                {{ form.sort(value=result.sort) }}
+                {% for error in form.sort.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.status.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">{{ form.status }}</span>
+                {% for error in form.status.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.title.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.title(value=result.title) }}
+                {% for error in form.title.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.ftitle.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.ftitle(value=result.ftitle) }}
+                {% for error in form.ftitle.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.keywords(value=result.keywords) }}
+                {% for error in form.keywords.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.description.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.description(value=result.description) }}
+                {% for error in form.description.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.image.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.image }}
+                {% for error in form.image.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.is_show.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">{{ form.is_show }}</span>
+                {% for error in form.is_show.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.overview.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.overview }}
+                {% for error in form.overview.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.functional.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.functional }}
+                {% for error in form.functional.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.parameter.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.parameter }}
+                {% for error in form.parameter.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.design.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.design }}
+                {% for error in form.design.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.downloads.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.downloads }}
+                {% for error in form.downloads.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.relationship.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.relationship }}
+                {% for error in form.relationship.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                {{ form.csrf_token }}
+                {{ form.submit }}
+            </div>
+        </div>
+    </form>
+{% endblock %}
+{% block frontend %}
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/jquery.validation/1.14.0/jquery.validate.js") }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/jquery.validation/1.14.0/validate-methods.js") }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/jquery.validation/1.14.0/messages_zh.js") }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/lib/kindeditor/kindeditor-all-min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static",filename="admin/h-ui.admin/js/dialog.js") }}"></script>
+    {% for message in get_flashed_messages(category_filter=["error"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.error(msg);
+            }
+        </script>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["ok"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.success(msg);
+            }
+        </script>
+    {% endfor %}
+    <script type="text/javascript">
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#overview,#functional,#parameter,#design,#downloads,#relationship', {
+                width: "100%",
+                height: "900px",
+                LangType: "zh-CN",
+                filterMode: false,
+                allowFileManager : true,
+                uploadJson: "{{ url_for("admin.upload") }}",
+                afterCreate: function () {
+                    this.sync();
+                },
+                afterBlur: function () {
+                    this.sync();
+                }
+            });
+        });
+    </script>
+{% endblock %}
