@@ -16,8 +16,8 @@ class Config:
     FLASK_ADMIN = os.environ.get('FLASKY_ADMIN')
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     # 部署时要修改转意符号
-    UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "/app/static/uploads/")
-    IMG_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "/app/static/uploads/images/")
+    UP_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/")
+    IMG_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)), "app/static/uploads/images/")
 
     @staticmethod
     def init_app(app):
@@ -31,7 +31,6 @@ class DevelopmentConfig(Config):
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    # SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URI') or \'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
     SQLALCHEMY_DATABASE_URI = 'mysql://root:Wavlink@163@localhost/blog?charset=utf8'
 
 
