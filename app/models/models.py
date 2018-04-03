@@ -9,7 +9,8 @@ from app.models import *
 class BaseModel(db.Model):
     __abstract__ = True
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
-    update_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"), onupdate=datetime.utcnow())
+    update_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+                            onupdate=datetime.utcnow())
 
 
 class User(BaseModel):
@@ -26,6 +27,7 @@ class User(BaseModel):
     image = db.Column(db.Text)
     article = db.relationship("Article", backref="user", lazy='dynamic')
     reply = db.relationship("Reply", backref="user", lazy='dynamic')
+    banner = db.relationship("Banner", backref="user", lazy='dynamic')
 
     def __repr__(self):
         return '<name %r>' % self.name
@@ -66,6 +68,19 @@ class Article(BaseModel):
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
     reply = db.relationship("Reply", backref="article")
+
+    def __repr__(self):
+        return '<title %r>' % self.title
+
+
+class Banner(BaseModel):
+    __tablename__ = "tb_banner"
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
+    title = db.Column(db.String(64))
+    image = db.Column(db.String(255))
+    url = db.Column(db.String(255))
+    status = db.Column(db.SmallInteger, default=int(1))
 
     def __repr__(self):
         return '<title %r>' % self.title
