@@ -6,27 +6,22 @@ from flask import flash, request, jsonify, session
 from app.admin.content import *
 from app.decorate import admin_login
 from app.forms.article import ArticleForm
-from app.models.models import Category, Article
+from app.models.models import Banner
 from db_exts import db
 
 
-@admin.route("/content/article")
+@admin.route("/content/banner")
 @admin_login
-def article():
-    query = Article.query
+def banner():
+    query = Banner.query
     count = query.count()
     result = query.all()
-    return render_template("admin/content/article/article.html", count=count, article=result)
+    return render_template("admin/content/banner/banner.html", count=count, article=result)
 
 
-@admin.route("/content/article/add", methods=["GET", "POST"])
-def article_add():
+@admin.route("/content/banner/add", methods=["GET", "POST"])
+def banner_add():
     form = ArticleForm()
-    category = Category.query.all()
-    category = [(i.id, i.name) for i in category]
-    if not category:
-        category.insert(0, (1, "根分类"))
-    form.category_id.choices = category
     if request.method == "POST":
         if form.validate_on_submit():
             data = form.data
@@ -47,8 +42,8 @@ def article_add():
     return render_template("admin/content/article/article_add.html", form=form)
 
 
-@admin.route("/content/article/edit/<int:id>", methods=['GET', 'POST'])
-def article_edit(id=None):
+@admin.route("/content/banner/edit/<int:id>", methods=['GET', 'POST'])
+def banner_edit(id=None):
     if id is None:
         result = {
             "status": 0,
