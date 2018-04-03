@@ -98,3 +98,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# config and images
+
+config.py
+uploads/images/
