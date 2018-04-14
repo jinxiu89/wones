@@ -102,4 +102,4 @@ ENV/
 # config and images
 
 config.py
-uploads/images
+uploads/images/*
