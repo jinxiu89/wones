@@ -46,3 +46,4 @@ def banner_edit(id=None):
             form.edit(result)
             flash("保存成功", "ok")
     return render_template("admin/content/banner/banner_edit.html", form=form, result=result)
+
