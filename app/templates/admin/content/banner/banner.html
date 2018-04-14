@@ -1,4 +1,5 @@
 {% extends "admin/base/base.html" %}
+{% block title %}<title>幻灯片管理</title>{% endblock %}
 {% block page_navbar %}
     <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
         <span class="c-gray en">&gt;</span>
@@ -9,7 +10,7 @@
            href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a>
     </nav>
 {% endblock %}
-{% block left_navbar %}
+{% block navbar %}
     {% include "admin/base/content_navbar.html" %}
 {% endblock %}
 {% block content %}
@@ -17,7 +18,7 @@
         <div class="cl pd-5 bg-1 bk-gray mt-20">
             <span class="l">
             <a href="javascript:void(0);"
-               onclick="admin_banner_add('添加幻灯片','{{ url_for("admin.banner_add") }}','','680')"
+               onclick="banner_add('添加幻灯片','{{ url_for("admin.banner_add") }}','','680')"
                class="btn btn-primary radius">
                 <i class="Hui-iconfont">&#xe600;</i> 添加首焦
             </a>
@@ -33,11 +34,10 @@
                 <tr class="text-c">
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
-                    <th width="100">语种</th>
                     <th width="400">标题</th>
                     <th width="100">缩略图</th>
-                    <th>描述</th>
-                    <th width="100">创建时间</th>
+                    <th>指向链接</th>
+                    <th width="200">创建时间</th>
                     <th width="100">操作</th>
                 </tr>
                 </thead>
@@ -46,32 +46,31 @@
                     <tr class="text-c">
                         <td><input type="checkbox" value="{{ vo.id }}" name="id"></td>
                         <td>{{ vo.id }}</td>
-                        <td>{{ vo.language_id }}</td>
                         <td style="text-align: left">{{ vo.title }}</td>
                         <td style="text-align: left">
-                            <img class="picture-thumb" src="{{ url_for("static",filename="uploads/"+vo.image) }}"
+                            <img class="picture-thumb" src="{{ vo.image }}"
                                  width="100">
                         </td>
-                        <td style="text-align: left">{{ vo.description }}</td>
+                        <td style="text-align: left"><a href="{{ vo.url }}">{{ vo.url }}</a></td>
                         <td>{{ vo.create_time }}</td>
                         <td>
                             {% if vo.status == 1 %}
                                 <a style="text-decoration:none"
-                                   onClick="start_or_stop('{{ url_for("admin.banner_stop",id=vo.id) }}')"
+                                   onClick="start_or_stop('')"
                                    href="javascript:void(0);" title="停用"><i
                                         class="Hui-iconfont c-green">&#xe631;</i></a>
                             {% else %}
                                 <a style="text-decoration:none"
-                                   onClick="start_or_stop('{{ url_for("admin.banner_start",id=vo.id) }}')"
+                                   onClick="start_or_stop('')"
                                    href="javascript:void(0);" title="启用"><i class="Hui-iconfont c-red">&#xe601;</i></a>
                             {% endif %}
                             <a title="编辑" href="javascript:void(0);"
-                               onclick="admin_banner_edit('编辑幻灯片','{{ url_for("admin.content_banner_edit",id=vo.id) }}','800','680')"
+                               onclick="banner_edit('编辑幻灯片','','800','680')"
                                class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6df;</i>
                             </a>
                             <a title="删除" href="javascript:void(0);"
-                               onclick="admin_banner_del(this,'{{ url_for("admin.content_banner_del",id=vo.id) }}')"
+                               onclick="banner_del(this,'')"
                                class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6e2;</i>
                             </a>
@@ -83,7 +82,7 @@
         </div>
     </article>
 {% endblock %}
-{% block frontend %}
+{% block js %}
     <script type="text/javascript"
             src="{{ url_for("static",filename="admin/lib/My97DatePicker/4.8/WdatePicker.js") }}"></script>
     <script type="text/javascript"
@@ -105,15 +104,15 @@
             $("#content").addClass("current")
         });
 
-        function admin_banner_add(title, url, w, h) {
+        function banner_add(title, url, w, h) {
             layer_show(title, url, w, h)
         }
 
-        function admin_banner_edit(title, url, w, h) {
+        function banner_edit(title, url, w, h) {
             layer_show(title, url, w, h)
         }
 
-        function admin_banner_del(obj, url) {
+        function banner_del(obj, url) {
             $.ajax({
                 type: 'POST',
                 url: url,

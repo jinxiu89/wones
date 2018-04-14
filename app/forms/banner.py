@@ -3,9 +3,13 @@
 # author:jinxiu89@163.com
 # create by thomas on 18-3-22.
 from app.forms import *
+from app.models.models import Banner
+from db_exts import db
+from utils import upload_image
+from flask import session
 
 
-class ArticleForm(FlaskForm):
+class BannerForm(FlaskForm):
     title = StringField(
         label="标题",
         description="幻灯片标题",
@@ -26,10 +30,13 @@ class ArticleForm(FlaskForm):
             "placeholder": "http://www.baidu.com"
         }
     )
-    image = FileField(label="封面图", validators=[
-        FileRequired("未选择文件"),
-        FileAllowed(['jpg', 'png', 'jpeg'], '只能上传图片！')
-    ])
+    image = FileField(
+        label="上传图片",
+        validators=[DataRequired("请上传图片")],
+        render_kw={
+            "class": "btn btn-default"
+        }
+    )
     status = SelectField(
         label="状态",
         validators={
@@ -45,3 +52,17 @@ class ArticleForm(FlaskForm):
     )
 
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})
+
+    def create(self):
+        banner = Banner()
+        self.populate_obj(article)
+        db.session.add(banner)
+        db.session.commit()
+        return banner
+
+    def edit(self, banner):
+        banner.image.data = upload_image(self.image.data)
+        self.populate_obj(banner)
+        db.session.add(banner)
+        db.session.commit()
+        return banner

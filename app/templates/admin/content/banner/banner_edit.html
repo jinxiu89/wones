@@ -10,7 +10,7 @@
         <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.title.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
-                {{ form.title }}
+                {{ form.title(value=result.title) }}
                 {% for error in form.title.errors %}
                     <span class="c-red">{{ error }}</span>
                 {% endfor %}
@@ -19,7 +19,7 @@
         <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
-                {{ form.url }}
+                {{ form.url(value=result.url) }}
                 {% for error in form.url.errors %}
                     <span class="c-red">{{ error }}</span>
                 {% endfor %}

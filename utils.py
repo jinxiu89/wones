@@ -5,6 +5,7 @@
 import os
 import uuid
 import datetime
+from flask import jsonify, current_app, url_for
 
 
 # 上传图片的前置操作
@@ -12,3 +13,14 @@ def change_filename(filename):
     fileinfo = os.path.splitext(filename)
     filename = datetime.datetime.now().strftime("%Y%m%d%H%M%S") + str(uuid.uuid4().hex) + fileinfo[-1]
     return filename
+
+
+# 上传图片
+def upload_image(image):
+    image = image
+    if not os.path.exists(current_app.config.get('IMG_DIR')):
+        os.makedirs(current_app.config.get('IMG_DIR'))
+        os.chmod(current_app.config.get('IMG_DIR'), 'rw')
+    img = change_filename(image.filename)
+    image.save(current_app.config.get('IMG_DIR') + img)
+    return url_for("static", filename="uploads/images/" + img)

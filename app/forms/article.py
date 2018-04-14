@@ -3,6 +3,8 @@
 # author:jinxiu89@163.com
 # create by thomas on 18-3-22.
 from app.forms import *
+from app.models.models import Article
+from db_exts import db
 
 
 class ArticleForm(FlaskForm):
@@ -97,3 +99,16 @@ class ArticleForm(FlaskForm):
         super(ArticleForm, self).__init__(*args, **kwargs)
 
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})
+
+    def create(self):
+        article = Article()
+        self.populate_obj(article)
+        db.session.add(article)
+        db.session.commit()
+        return article
+
+    def edit(self, article):
+        self.populate_obj(article)
+        db.session.add(article)
+        db.session.commit()
+        return article
