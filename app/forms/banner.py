@@ -7,6 +7,7 @@ from app.models.models import Banner
 from db_exts import db
 from utils import upload_image
 from flask import session
+from datetime import datetime
 
 
 class BannerForm(FlaskForm):
@@ -61,8 +62,12 @@ class BannerForm(FlaskForm):
         return banner
 
     def edit(self, banner):
-        banner.image.data = upload_image(self.image.data)
-        self.populate_obj(banner)
+        banner.user_id = session.get("id")
+        banner.title = self.title.data
+        banner.image = upload_image(self.image.data)
+        banner.url = self.url.data
+        banner.status = self.status.data
+        banner.update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         db.session.add(banner)
         db.session.commit()
         return banner
