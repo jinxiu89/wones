@@ -28,14 +28,11 @@
         <div class="mt-20">
             <table class="table table-border table-bordered table-hover table-bg table-sort">
                 <thead>
-                <tr>
-                    <th scope="col" colspan="9">幻灯片列表</th>
-                </tr>
                 <tr class="text-c">
                     <th width="25"><input type="checkbox" name="" value=""></th>
                     <th width="40">ID</th>
                     <th width="400">标题</th>
-                    <th width="100">缩略图</th>
+                    <th width="60">缩略图</th>
                     <th>指向链接</th>
                     <th width="200">创建时间</th>
                     <th width="100">操作</th>
@@ -49,19 +46,19 @@
                         <td style="text-align: left">{{ vo.title }}</td>
                         <td style="text-align: left">
                             <img class="picture-thumb" src="{{ vo.image }}"
-                                 width="100">
+                                 width="50">
                         </td>
                         <td style="text-align: left"><a href="{{ vo.url }}">{{ vo.url }}</a></td>
                         <td>{{ vo.create_time }}</td>
                         <td>
                             {% if vo.status == 1 %}
                                 <a style="text-decoration:none"
-                                   onClick="start_or_stop('')"
+                                   onClick="start_or_stop('{{ url_for("admin.banner_stop",id=vo.id) }}')"
                                    href="javascript:void(0);" title="停用"><i
                                         class="Hui-iconfont c-green">&#xe631;</i></a>
                             {% else %}
                                 <a style="text-decoration:none"
-                                   onClick="start_or_stop('')"
+                                   onClick="start_or_stop('{{ url_for("admin.banner_start",id=vo.id) }}')"
                                    href="javascript:void(0);" title="启用"><i class="Hui-iconfont c-red">&#xe601;</i></a>
                             {% endif %}
                             <a title="编辑" href="javascript:void(0);"
@@ -70,7 +67,7 @@
                                 <i class="Hui-iconfont">&#xe6df;</i>
                             </a>
                             <a title="删除" href="javascript:void(0);"
-                               onclick="banner_del(this,'')"
+                               onclick="banner_del(this,'{{ url_for("admin.banner_del",id=vo.id) }}')"
                                class="ml-5" style="text-decoration:none">
                                 <i class="Hui-iconfont">&#xe6e2;</i>
                             </a>
@@ -135,8 +132,8 @@
                 dataType: "json",
                 success: function (result) {
                     if (result.status === 1) {
-                        window.parent.location.replace(location.href)
-                        layer.msg(result.data, {icon: 1, time: 1000})
+                        layer.msg(result.data, {icon: 1, time: 1000});
+                        window.parent.location.replace(location.href);
                     } else {
                         layer.msg(result.data, {icon: 5, time: 1000})
                     }

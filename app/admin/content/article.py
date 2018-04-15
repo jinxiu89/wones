@@ -48,7 +48,6 @@ def article_edit(id=None):
         category.insert(0, (1, "根分类"))
     form.category_id.choices = category
     result = Article.query.get_or_404(id)
-    form = ArticleForm()
     if request.method == "GET":
         form.category_id.data = result.category_id
         form.description.data = result.description

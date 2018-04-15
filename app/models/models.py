@@ -2,8 +2,8 @@
 # _*_ coding:utf-8_*_
 # author:jinxiu89@163.com
 # create by thomas on 18-1-27.
-from datetime import datetime
 from app.models import *
+from flask import current_app
 
 
 class BaseModel(db.Model):
@@ -45,6 +45,7 @@ class Category(BaseModel):
     name = db.Column(db.String(64))
     keywords = db.Column(db.String(32))
     description = db.Column(db.String(255))
+    short = db.Column(db.Integer)
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
     Article = db.relationship("Article", backref="category", lazy='dynamic')
 
@@ -64,6 +65,7 @@ class Article(BaseModel):
     url_title = db.Column(db.String(32))
     keywords = db.Column(db.String(32))
     description = db.Column(db.String(255))
+    image = db.Column(db.String(255))
     content = db.Column(db.Text)
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
@@ -84,6 +86,25 @@ class Banner(BaseModel):
 
     def __repr__(self):
         return '<title %r>' % self.title
+
+    @staticmethod
+    def stop(banner):
+        db.session.add(banner)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def start(banner):
+        db.session.add(banner)
+        db.session.commit()
+        return True
+
+    def delete(banner):
+        if banner.image and os.path.exists(current_app.config.get('IMG_DIR') + banner.image):
+            os.remove(current_app.config.get('IMG_DIR') + banner.image)
+        db.session.delete(banner)
+        db.session.commit()
+        return True
 
 
 class Reply(BaseModel):

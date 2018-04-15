@@ -37,7 +37,8 @@ class UserForm(FlaskForm):
         choices=[(1, '是'), (2, '否')],
         render_kw={
             "class": "select valid",
-            "size": 1
+            "size": 1,
+            "style": "height:30px"
         }
 
     )

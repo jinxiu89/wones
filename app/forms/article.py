@@ -5,6 +5,8 @@
 from app.forms import *
 from app.models.models import Article
 from db_exts import db
+from flask import session
+from utils import upload_image
 
 
 class ArticleForm(FlaskForm):
@@ -16,7 +18,8 @@ class ArticleForm(FlaskForm):
         },
         render_kw={
             "class": "select valid",
-            "size": 1
+            "size": 1,
+            "style": "height:30px",
         }
     )
     title = StringField(
@@ -57,6 +60,14 @@ class ArticleForm(FlaskForm):
             "rows": "",
             "placeholder": "100字以内随便打",
             "dragonfly": "true",
+        }
+    )
+    image = FileField(
+        label="上传图片",
+        validators=[DataRequired("请上传图片")],
+        render_kw={
+            "class": "btn btn-default",
+            "style": "height:37px"
         }
     )
     content = TextAreaField(
@@ -101,8 +112,18 @@ class ArticleForm(FlaskForm):
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})
 
     def create(self):
-        article = Article()
-        self.populate_obj(article)
+        article = Article(
+            user_id=session.get("id"),
+            category_id=self.category_id.data,
+            title=self.title.data,
+            url_title=self.url_title.data,
+            keywords=self.keywords.data,
+            description=self.description.data,
+            image=upload_image(self.image.data),
+            content=self.content.data,
+            relationship=self.relationship.data,
+            status=self.status.data,
+        )
         db.session.add(article)
         db.session.commit()
         return article

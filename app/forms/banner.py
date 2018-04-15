@@ -35,7 +35,8 @@ class BannerForm(FlaskForm):
         label="上传图片",
         validators=[DataRequired("请上传图片")],
         render_kw={
-            "class": "btn btn-default"
+            "class": "btn btn-default",
+            "style": "height:37px"
         }
     )
     status = SelectField(
@@ -47,7 +48,8 @@ class BannerForm(FlaskForm):
         choices=[(1, '启用'), (2, '禁用')],
         render_kw={
             "class": "select valid",
-            "size": 1
+            "size": 1,
+            "style": "height:30px"
         }
 
     )
@@ -55,8 +57,13 @@ class BannerForm(FlaskForm):
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})
 
     def create(self):
-        banner = Banner()
-        self.populate_obj(article)
+        banner = Banner(
+            user_id=session.get("id"),
+            title=self.title.data,
+            image=upload_image(self.image.data),
+            url=self.url.data,
+            status=self.status.data
+        )
         db.session.add(banner)
         db.session.commit()
         return banner
