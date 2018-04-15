@@ -64,7 +64,7 @@ class ArticleForm(FlaskForm):
     )
     image = FileField(
         label="上传图片",
-        validators=[DataRequired("请上传图片")],
+        validators=[DataRequired("请选择文件")],
         render_kw={
             "class": "btn btn-default",
             "style": "height:37px"
