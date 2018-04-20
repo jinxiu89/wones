@@ -11,7 +11,4 @@ from app.decorate import admin_login
 @admin.route("/")
 @admin_login
 def index():
-    name = session.get("name")
-    print(name)
-    print("请求在此")
     return render_template("/admin/dashboard.html")
