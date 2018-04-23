@@ -25,5 +25,5 @@ def login():
         if request.method == "POST":
             session['name'] = data['name']
             session['id'] = result.id
-            return redirect(request.args.get("next") or url_for("admin.index"))
+            return redirect(request.args.get("next") or url_for("admin.article"))
     return render_template("admin/login.html", form=form)

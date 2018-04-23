@@ -1,0 +1,19 @@
+{% extends "main/base/base.html" %}
+{% block main %}
+    <div class="col-xs-12 col-sm-6 col-md-8">
+        {% for vo in result %}
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object" src="{{ vo.image }}" alt="占位" style="width: 80px;height: 80px;">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{ vo.title }}</h4>
+                    <p>{{ vo.description }}</p>
+                    <span>{{ vo.category_id|getCategory }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

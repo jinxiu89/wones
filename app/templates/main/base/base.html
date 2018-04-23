@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block header %}
+        <title>Base</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+    {% endblock %}
+    <meta name="author" content="jinxiu89@163.com">
+    <link href="favicon.png" rel="icon" type="image/png">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/8.4/styles/monokai_sublime.min.css">
+    {% block sking %}
+        <!-- Custom styles for this template -->
+
+    {% endblock %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+{% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top site-navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="./">Gulp 中文网</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="./">首页</a>
+                    </li>
+                    <li><a href="docs/">中文文档</a>
+                    </li>
+                    <li><a href="docs/getting-started/">入门指南</a>
+                    </li>
+                    <li><a href="docs/api/">API</a>
+                    </li>
+                    <li><a href="docs/writing-a-plugin/">插件开发</a>
+                    </li>
+                    <li><a href="docs/faq/">常见问题</a>
+                    </li>
+                    <li><a href="docs/recipes/">使用技巧</a>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+{% endblock %}
+{% block banner %}
+    <!-- Jumbotron -->
+{% endblock %}
+<main class="benefits container" style="padding-top: 70px">
+    <div class="row">
+        {% block main %}
+            <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="..." alt="占位" style="width: 80px;height: 80px;">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Middle aligned media</h4>
+                        <p>asd;kjdsfa;kldasf;adfjkdasfjkl;sdfajkl;asdf;dfasjkdfjkdfs</p>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+        {% block main_left %}
+            <div class="col-xs-6 col-md-4">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        Cras justo odio
+                    </a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+</main>
+{% block footer %}
+    <!-- Site footer -->
+    <footer class="footer" style="margin-top: 40px;padding: 40px 0;background: #dddddd">
+        <div class="container" style="text-align: center">
+            <p>
+            <ul class="list-inline">
+                <li><a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a>
+                </li>
+                <li><a href="https://www.jekyll.com.cn/" target="_blank">Jekyll中文网</a>
+                </li>
+                <li><a href="https://www.webpackjs.com/" target="_blank">Webpack中文文档</a>
+                </li>
+                <li><a href="https://www.quanzhanketang.com/" target="_blank">全栈课堂</a>
+                </li>
+                <li><a href="https://www.91php.com/" target="_blank">91PHP</a>
+                </li>
+                <li><a href="https://www.npmjs.com.cn/" target="_blank">NPM中文文档</a>
+                </li>
+                <li><a href="https://www.jquery123.com/" target="_blank">jQuery中文网</a>
+                </li>
+                <li><a href="http://www.gruntjs.net/" target="_blank">Grunt中文网</a>
+                </li>
+                <li><a href="http://www.sasschina.com/" target="_blank">SASS中国</a>
+                </li>
+                <li><a href="http://www.rollupjs.com/" target="_blank">Rollup中文网</a>
+                </li>
+                <li><a href="https://www.tailwindcss.cn/" target="_blank">Tailwind CSS</a>
+                </li>
+                <li><a href="http://www.youzhan.org/" target="_blank">优站精选</a>
+                </li>
+            </ul>
+            </p>
+            <p><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备000000号</a> | 京公网安备000000</p>
+            <p>&copy; Wones 2018</p>
+            <p>Powered by Flask </p>
+        </div>
+    </footer>
+{% endblock %}
+<script src="https://cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -4,6 +4,6 @@
 # create by thomas on 18-1-27.
 from flask import Blueprint
 
-main = Blueprint("main", __name__, url_prefix="/main")
+main = Blueprint("main", __name__, url_prefix="/")
 
-import app.main.index
+from .index import index
