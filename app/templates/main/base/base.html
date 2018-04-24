@@ -74,15 +74,14 @@
             </div>
         {% endblock %}
         {% block main_left %}
-            <div class="col-xs-6 col-md-4">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        热门文章
-                    </a>
+            <div class="col-xs-12 col-md-4" style="border-left:1px solid#dddddd;min-height: 680px;">
+                <h4>最热门文章</h4>
+                <ul class="nav">
                     {% for vo in hot_article %}
-                        <a href="#" class="list-group-item">{{ vo.title }}</a>
+                        <li class=""><a href="#" style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
                     {% endfor %}
-                </div>
+
+                </ul>
             </div>
         {% endblock %}
     </div>
