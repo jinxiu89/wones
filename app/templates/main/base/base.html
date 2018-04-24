@@ -36,24 +36,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./">Gulp 中文网</a>
+                <a class="navbar-brand" href="./">Wones博客</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="./">首页</a>
                     </li>
-                    <li><a href="docs/">中文文档</a>
-                    </li>
-                    <li><a href="docs/getting-started/">入门指南</a>
-                    </li>
-                    <li><a href="docs/api/">API</a>
-                    </li>
-                    <li><a href="docs/writing-a-plugin/">插件开发</a>
-                    </li>
-                    <li><a href="docs/faq/">常见问题</a>
-                    </li>
-                    <li><a href="docs/recipes/">使用技巧</a>
-                    </li>
+                    {% for vo in category %}
+                        <li>
+                            <a href="docs/">{{ vo.name }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -84,12 +77,11 @@
             <div class="col-xs-6 col-md-4">
                 <div class="list-group">
                     <a href="#" class="list-group-item">
-                        Cras justo odio
+                        热门文章
                     </a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item">Morbi leo risus</a>
-                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                    {% for vo in hot_article %}
+                        <a href="#" class="list-group-item">{{ vo.title }}</a>
+                    {% endfor %}
                 </div>
             </div>
         {% endblock %}
@@ -101,29 +93,8 @@
         <div class="container" style="text-align: center">
             <p>
             <ul class="list-inline">
-                <li><a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a>
-                </li>
-                <li><a href="https://www.jekyll.com.cn/" target="_blank">Jekyll中文网</a>
-                </li>
-                <li><a href="https://www.webpackjs.com/" target="_blank">Webpack中文文档</a>
-                </li>
-                <li><a href="https://www.quanzhanketang.com/" target="_blank">全栈课堂</a>
-                </li>
-                <li><a href="https://www.91php.com/" target="_blank">91PHP</a>
-                </li>
-                <li><a href="https://www.npmjs.com.cn/" target="_blank">NPM中文文档</a>
-                </li>
-                <li><a href="https://www.jquery123.com/" target="_blank">jQuery中文网</a>
-                </li>
-                <li><a href="http://www.gruntjs.net/" target="_blank">Grunt中文网</a>
-                </li>
-                <li><a href="http://www.sasschina.com/" target="_blank">SASS中国</a>
-                </li>
-                <li><a href="http://www.rollupjs.com/" target="_blank">Rollup中文网</a>
-                </li>
-                <li><a href="https://www.tailwindcss.cn/" target="_blank">Tailwind CSS</a>
-                </li>
-                <li><a href="http://www.youzhan.org/" target="_blank">优站精选</a>
+                <li>
+                    <a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a>
                 </li>
             </ul>
             </p>
