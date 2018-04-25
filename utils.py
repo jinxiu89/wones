@@ -23,4 +23,12 @@ def upload_image(image):
         os.chmod(current_app.config.get('IMG_DIR'), 'rw')
     img = change_filename(image.filename)
     image.save(current_app.config.get('IMG_DIR') + img)
-    return url_for("static", filename="uploads/images/" + img)
+    return img
+
+
+# 删除图片
+def del_image(image):
+    image = image
+    if os.path.exists(current_app.config.get('IMG_DIR') + image):
+        os.remove(current_app.config.get('IMG_DIR') + image)
+    return True

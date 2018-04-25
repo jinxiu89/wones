@@ -46,8 +46,9 @@
                         <td><input type="checkbox" value="{{ vo.id }}" name="id"></td>
                         <td>{{ vo.id }}</td>
                         <td class="text-l">{{ vo.title }}</td>
-                        <td class="text-c"><img class="picture-thumb" src="{{ vo.image }}"
-                                                            width="50"></td>
+                        <td class="text-c"><img class="picture-thumb"
+                                                src="{{ url_for("static",filename="uploads/images/" + vo.image) }}"
+                                                width="50"></td>
                         <td class="text-l">{{ vo.url_title }}</td>
                         <td class="text-l">
                             {{ vo.keywords }}

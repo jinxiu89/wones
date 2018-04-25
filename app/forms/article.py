@@ -7,6 +7,7 @@ from app.models.models import Article
 from db_exts import db
 from flask import session
 from utils import upload_image
+from datetime import datetime
 
 
 class ArticleForm(FlaskForm):
@@ -106,7 +107,7 @@ class ArticleForm(FlaskForm):
 
     )
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> object:
         super(ArticleForm, self).__init__(*args, **kwargs)
 
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})
@@ -129,7 +130,17 @@ class ArticleForm(FlaskForm):
         return article
 
     def edit(self, article):
-        self.populate_obj(article)
+        article.user_id = session.get("id")
+        article.category_id = self.category_id.data
+        article.title = self.title.data
+        article.url_title = self.url_title.data
+        article.keywords = self.keywords.data
+        article.description = self.description.data
+        article.image = upload_image(self.image.data)
+        article.content = self.content.data
+        article.relationship = self.relationship.data
+        article.update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+        article.status = self.status.data
         db.session.add(article)
         db.session.commit()
         return article

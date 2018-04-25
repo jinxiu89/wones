@@ -1,141 +1,150 @@
 {% extends "admin/base/base_add.html" %}
 {% block form %}
-<form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.category_id.label }}：</div>
-        <div class="formControls col-xs-4 col-sm-3">
-            <span class="select-box">{{ form.category_id }}</span>
-            {% for error in form.category_id.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+    <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.category_id.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                <span class="select-box">{{ form.category_id }}</span>
+                {% for error in form.category_id.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.title.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.title(value=result.title) }}
-            {% for error in form.title.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>文章封面图片：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.image }}
+                {% for error in form.image.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.url_title(value=result.url_title) }}
-            {% for error in form.url_title.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.title.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.title(value=result.title) }}
+                {% for error in form.title.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.keywords(value=result.keywords) }}
-            {% for error in form.keywords.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.url_title(value=result.url_title) }}
+                {% for error in form.url_title.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.description.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.description }}
-            {% for error in form.description.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.keywords(value=result.keywords) }}
+                {% for error in form.keywords.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.content }}
-            {% for error in form.content.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.description.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.description }}
+                {% for error in form.description.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.relationship.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.relationship }}
-            {% for error in form.relationship.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.content }}
+                {% for error in form.content.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.status.label }}：</div>
-        <div class="formControls col-xs-8 col-sm-9">
-            {{ form.status }}
-            {% for error in form.status.errors %}
-            <span class="c-red">{{ error }}</span>
-            {% endfor %}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.relationship.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.relationship }}
+                {% for error in form.relationship.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="row cl">
-        <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-            {{ form.csrf_token }}
-            {{ form.submit }}
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.status.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.status }}
+                {% for error in form.status.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</form>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                {{ form.csrf_token }}
+                {{ form.submit }}
+            </div>
+        </div>
+    </form>
 {% endblock %}
 {% block frontend %}
-<script type="text/javascript"
-        src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/jquery.validate.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/validate-methods.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/messages_zh.js') }}"></script>
-<script type="text/javascript"
-        src="{{ url_for('static',filename='lib/kindeditor/kindeditor-all-min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static',filename='admin/h-ui.admin/js/dialog.js') }}"></script>
-{% for message in get_flashed_messages(category_filter=["error"]) %}
-<script type="text/javascript">
-    var msg = "{{ message }}";
-    if (msg) {
-        dialog.error(msg);
-    }
-</script>
-{% endfor %}
-{% for message in get_flashed_messages(category_filter=["ok"]) %}
-<script type="text/javascript">
-    var msg = "{{ message }}";
-    if (msg) {
-        dialog.success(msg);
-    }
-</script>
-{% endfor %}
-<script type="text/javascript">
-    KindEditor.ready(function (K) {
-        window.editor = K.create('#editor', {
-            width: "100%",
-            height: "900px",
-            LangType: "zh-CN",
-            filterMode: false,
-            uploadJson: "{{ url_for('admin.upload') }}",
-            afterCreate: function () {
-                this.sync();
-            },
-            afterBlur: function () {
-                this.sync();
+    <script type="text/javascript"
+            src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/jquery.validate.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/validate-methods.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/messages_zh.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ url_for('static',filename='lib/kindeditor/kindeditor-all-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='admin/h-ui.admin/js/dialog.js') }}"></script>
+    {% for message in get_flashed_messages(category_filter=["error"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.error(msg);
             }
-        })
-    });
-    KindEditor.ready((function (K) {
-        window.editor = K.create('#editor1',{
-            width:"100%",
-            height:"400px",
-            LangType:"zh-CN",
-            filterMode:false,
-            afterCreate: function () {
-                this.sync();
-            },
-            afterBlur: function () {
-                this.sync();
+        </script>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["ok"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.success(msg);
             }
-        })
-    }))
-</script>
+        </script>
+    {% endfor %}
+    <script type="text/javascript">
+        KindEditor.ready(function (K) {
+            window.editor = K.create('#editor', {
+                width: "100%",
+                height: "900px",
+                LangType: "zh-CN",
+                filterMode: false,
+                uploadJson: "{{ url_for('admin.upload') }}",
+                afterCreate: function () {
+                    this.sync();
+                },
+                afterBlur: function () {
+                    this.sync();
+                }
+            })
+        });
+        KindEditor.ready((function (K) {
+            window.editor = K.create('#editor1', {
+                width: "100%",
+                height: "400px",
+                LangType: "zh-CN",
+                filterMode: false,
+                afterCreate: function () {
+                    this.sync();
+                },
+                afterBlur: function () {
+                    this.sync();
+                }
+            })
+        }))
+    </script>
 {% endblock %}

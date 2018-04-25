@@ -13,7 +13,7 @@ def upload():
     image = request.files['imgFile']
     if not os.path.exists(current_app.config.get('IMG_DIR')):
         os.makedirs(current_app.config.get('IMG_DIR'))
-        os.chmod(current_app.config.get('IMG_DIR'), 'rw')
+        os.chmod(current_app.config.get('IMG_DIR'), rw)
     img = change_filename(image.filename)
     image.save(current_app.config.get('IMG_DIR') + img)
     return jsonify({"error": 0, "url": url_for("static", filename="uploads/images/" + img)})

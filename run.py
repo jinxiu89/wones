@@ -10,14 +10,10 @@ from db_exts import db
 db.init_app(app)
 db.app = app
 app = app
-
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template("404.html"), 404
-
-
 from app.filter import *
+from app.context import *
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.run()

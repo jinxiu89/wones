@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="wones">
+    <serverData>
+      <paths name="wones">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/__pycache__" />
+            <excludedPath path="/app/__pycache__" />
+            <excludedPath path="/venv" />
+            <excludedPath path="/logs" />
+            <excludedPath path="/app/models/__pycache__" />
+            <excludedPath path="/app/main/__pycache__" />
+            <excludedPath path="/app/forms/__pycache__" />
+            <excludedPath path="/app/admin/__pycache__" />
+            <excludedPath path="/app/admin/content/__pycache__" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
