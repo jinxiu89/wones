@@ -1,16 +1,18 @@
 {% extends "main/base/base.html" %}
 {% block header %}
-        <title>首页</title>
-        <meta name="description" content="">
-        <meta name="keywords" content="">
-    {% endblock %}
+    <title>首页</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+{% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in result %}
             <div class="media">
                 <div class="media-left media-middle">
                     <a href="#">
-                        <img class="media-object" src="{{ vo.image }}" alt="占位" style="width: 80px;height: 80px;">
+                        <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                             alt="占位"
+                             style="width: 80px;height: 80px;">
                     </a>
                 </div>
                 <div class="media-body">

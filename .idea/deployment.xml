@@ -17,6 +17,7 @@
             <excludedPath path="/app/forms/__pycache__" />
             <excludedPath path="/app/admin/__pycache__" />
             <excludedPath path="/app/admin/content/__pycache__" />
+            <excludedPath path="/app/main/errors/__pycache__" />
           </excludedPaths>
         </serverdata>
       </paths>
