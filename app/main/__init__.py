@@ -4,7 +4,8 @@
 # create by thomas on 18-1-27.
 from flask import Blueprint
 
-main = Blueprint("main", __name__, url_prefix="/")
+main = Blueprint("main", __name__, url_prefix="/main")
 
-from .index import index
 from .errors import errors
+from .index import index
+from .article import lists, details

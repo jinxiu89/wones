@@ -6,10 +6,10 @@
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
-        {% for vo in result %}
+        {% for vo in article %}
             <div class="media">
                 <div class="media-left media-middle">
-                    <a href="{{ url_for("main.article_details",id=vo.id) }}">
+                    <a href="#">
                         <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
                              alt="占位"
                              style="width: 80px;height: 80px;">

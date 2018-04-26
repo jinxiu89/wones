@@ -11,3 +11,9 @@ def get_category(id):
     from app.models.models import Category
     category = Category.query.filter_by(id=int(id)).first()
     return category.name
+
+
+@app.template_filter("getUser")
+def get_user(id):
+    from app.models.models import User
+    return User.query.filter_by(id=int(id)).first().name

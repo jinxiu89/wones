@@ -36,15 +36,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="./">Wones博客</a>
+                <a class="navbar-brand" href="{{ url_for("main.index") }}">Wones博客</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="./">首页</a>
+                    <li><a href="{{ url_for("main.index") }}">首页</a>
                     </li>
                     {% for vo in category %}
                         <li>
-                            <a href="docs/">{{ vo.name }}</a>
+                            <a href="{{ url_for("main.article_lists",id=vo.id) }}">{{ vo.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -59,26 +59,15 @@
 <main class="benefits container" style="padding-top: 70px">
     <div class="row">
         {% block main %}
-            <div class="col-xs-12 col-sm-6 col-md-8">
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="..." alt="占位" style="width: 80px;height: 80px;">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Middle aligned media</h4>
-                        <p>asd;kjdsfa;kldasf;adfjkdasfjkl;sdfajkl;asdf;dfasjkdfjkdfs</p>
-                    </div>
-                </div>
-            </div>
+            <!--页面主体在这里展开-->
         {% endblock %}
         {% block main_left %}
             <div class="col-xs-12 col-md-4" style="border-left:1px solid#dddddd;min-height: 680px;">
                 <h4>最热门文章</h4>
                 <ul class="nav">
                     {% for vo in hot_article %}
-                        <li class=""><a href="#" style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
+                        <li class=""><a href="{{ url_for("main.article_details",id=vo.id) }}"
+                                        style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
                     {% endfor %}
 
                 </ul>

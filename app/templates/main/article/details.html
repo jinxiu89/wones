@@ -1,0 +1,29 @@
+{% extends "main/base/base.html" %}
+{% block header %}
+    <title>{{ article.title }}</title>
+    <meta name="description" content="{{ article.description }}">
+    <meta name="keywords" content="{{ article.keywords }}">
+{% endblock %}
+{% block sking %}
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
+{% endblock %}
+{% block main %}
+    <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="section">
+            <div class="page-header">
+                <h3>{{ article.title }}</h3>
+                <span style="color: #0a6999"><a
+                        href="{{ url_for('main.article_lists',id=article.category_id) }}">{{ article.category_id|getCategory }}</a>
+                </span> |
+                <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
+                | <span>{{ article.update_time }}</span>
+            </div>
+            <div class="content">
+                <img src="{{ url_for("static",filename="uploads/images/"+article.image) }}" alt=""
+                     class="img-responsive" style="padding-bottom: 20px">
+                {{ article.content|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
