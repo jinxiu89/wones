@@ -6,8 +6,10 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from create_app import app
 from db_exts import db
+from flask import redirect, url_for
 from app.filter import *
 from app.context import *
+
 
 db.init_app(app)
 db.app = app

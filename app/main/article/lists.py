@@ -9,5 +9,6 @@ from flask import render_template
 
 @main.route("/article/list/<int:id>")
 def article_lists(id):
+    parent = Category.query.get_or_404(id)
     article = Category.query.get_or_404(id).Article.all()
-    return render_template('main/article/lists.html', article=article)
+    return render_template('main/article/lists.html', article=article, parent=parent)
