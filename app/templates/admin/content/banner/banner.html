@@ -45,7 +45,7 @@
                         <td>{{ vo.id }}</td>
                         <td style="text-align: left">{{ vo.title }}</td>
                         <td style="text-align: left">
-                            <img class="picture-thumb" src="{{ vo.image }}"
+                            <img class="picture-thumb" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
                                  width="50">
                         </td>
                         <td style="text-align: left"><a href="{{ vo.url }}">{{ vo.url }}</a></td>

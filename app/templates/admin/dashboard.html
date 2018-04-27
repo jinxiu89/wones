@@ -1,1 +1,19 @@
 {% extends "/admin/base/base.html" %}
+{% block navbar %}
+    {% include "admin/base/system_navbar.html" %}
+{% endblock %}
+{% block content %}
+<article class="cl pd-20" style="min-height: 51em;">
+hello
+</article>
+{% endblock %}
+{% block frontend %}
+    <script type="text/javascript"
+            src="{{ url_for("static",filename="admin/h-ui.admin/js/system_permission.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for("static",filename="admin/h-ui.admin/js/dialog.js") }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#system").addClass("current")
+        });
+    </script>
+{% endblock %}
