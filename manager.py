@@ -10,10 +10,11 @@ from flask import redirect, url_for
 from app.filter import *
 from app.context import *
 
-
 db.init_app(app)
 db.app = app
 db.create_all()
+
+
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command("db", MigrateCommand)

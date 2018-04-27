@@ -7,7 +7,7 @@ from flask import render_template
 from app.models.models import Article
 
 
-@main.route("/article/details/<int:id>")
-def article_details(id):
-    article = Article.query.get_or_404(id)
+@main.route("/article/details/<url_title>")
+def article_details(url_title):
+    article = Article.query.filter_by(url_title=url_title).first()
     return render_template('main/article/details.html', article=article)

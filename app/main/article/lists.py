@@ -7,8 +7,8 @@ from app.models.models import Category, Article
 from flask import render_template
 
 
-@main.route("/article/list/<int:id>")
-def article_lists(id):
-    parent = Category.query.get_or_404(id)
-    article = Category.query.get_or_404(id).Article.all()
+@main.route("/article/list/<name>")
+def article_lists(name):
+    parent = Category.query.filter_by(name=name).first()
+    article = parent.Article
     return render_template('main/article/lists.html', article=article, parent=parent)

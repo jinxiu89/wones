@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="wones">
+  <component name="PublishConfigData" autoUpload="Always" serverName="wones">
     <serverData>
       <paths name="wones">
         <serverdata>
@@ -19,9 +19,18 @@
             <excludedPath path="/app/admin/content/__pycache__" />
             <excludedPath path="/app/main/errors/__pycache__" />
             <excludedPath path="/app/static/uploads" />
+            <excludedPath path="/app/admin/dashboard/__pycache__" />
+            <excludedPath path="/app/admin/login/__pycache__" />
+            <excludedPath path="/app/admin/system/__pycache__" />
+            <excludedPath path="/app/admin/upload/__pycache__" />
+            <excludedPath path="/app/main/article/__pycache__" />
+            <excludedPath path="/app/main/index/__pycache__" />
+            <excludedPath path="/migrations" />
+            <excludedPath path="/gunicorn.conf" />
           </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

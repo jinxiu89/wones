@@ -14,7 +14,7 @@
             <div class="page-header">
                 <h3>{{ article.title }}</h3>
                 <span style="color: #0a6999"><a
-                        href="{{ url_for('main.article_lists',id=article.category_id) }}">{{ article.category_id|getCategory }}</a>
+                        href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
                 </span> |
                 <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
                 | <span>{{ article.update_time }}</span>
