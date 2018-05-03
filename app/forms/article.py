@@ -65,7 +65,7 @@ class ArticleForm(FlaskForm):
     )
     image = FileField(
         label="上传图片",
-        validators=[DataRequired("请选择文件")],
+        validators=[],
         render_kw={
             "class": "btn btn-default",
             "style": "height:37px"
@@ -136,7 +136,8 @@ class ArticleForm(FlaskForm):
         article.url_title = self.url_title.data
         article.keywords = self.keywords.data
         article.description = self.description.data
-        article.image = upload_image(self.image.data)
+        if self.image.data:
+            article.image = upload_image(self.image.data)
         article.content = self.content.data
         article.relationship = self.relationship.data
         article.update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")

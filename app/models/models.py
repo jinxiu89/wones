@@ -82,6 +82,7 @@ class Article(BaseModel):
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
     reply = db.relationship("Reply", backref="article")
+    count = db.Column(db.Integer, default=int(100))
 
     def __repr__(self):
         return '<title %r>' % self.title
