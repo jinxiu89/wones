@@ -8,9 +8,11 @@ from app.forms.category import CategoryForm
 from werkzeug.security import generate_password_hash
 from db_exts import db
 from flask import flash, request, jsonify
+from app.decorate import admin_login
 
 
 @admin.route("/system/category")
+@admin_login
 def system_category():
     query = Category.query
     result = query.all()
@@ -19,6 +21,7 @@ def system_category():
 
 
 @admin.route("/system/category/add", methods=['POST', 'GET'])
+@admin_login
 def system_category_add():
     form = CategoryForm()
     if request.method == "POST":
@@ -36,6 +39,7 @@ def system_category_add():
 
 
 @admin.route("/system/category/edit/<int:id>", methods=['POST', 'GET'])
+@admin_login
 def system_category_edit(id=None):
     if id is None:
         result = {

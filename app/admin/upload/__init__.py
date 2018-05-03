@@ -6,9 +6,11 @@ import os
 from app.admin import admin
 from utils import change_filename
 from flask import jsonify, request, current_app, url_for
+from app.decorate import admin_login
 
 
 @admin.route("/upload", methods=["POST"])
+@admin_login
 def upload():
     image = request.files['imgFile']
     if not os.path.exists(current_app.config.get('IMG_DIR')):

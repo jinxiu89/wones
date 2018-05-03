@@ -5,9 +5,11 @@
 from app.admin import admin
 from flask import render_template, session, redirect, url_for, flash
 from app.forms.login import LoginForm
+from app.decorate import admin_login
 
 
 @admin.route("/logout", methods=["GET", "POST"])
+@admin_login
 def logout():
     session.pop("name", None)
     session.pop("id", None)

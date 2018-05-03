@@ -53,6 +53,18 @@ class Category(BaseModel):
         return '<name %r>' % self.name
 
 
+class Ad(BaseModel):
+    __tablename__ = "tb_ad"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    image = db.Column(db.String(255))
+    path = db.Column(db.Text)
+    status = db.Column(db.SmallInteger)
+
+    def __repr__(self):
+        return '<name %r>' % self.name
+
+
 class Article(BaseModel):
     """
     文章表，只有注册的用户才能发表文章，必须制定分类

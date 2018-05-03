@@ -9,5 +9,5 @@ from app.models.models import Article
 
 @main.route("/article/details/<url_title>")
 def article_details(url_title):
-    article = Article.query.filter_by(url_title=url_title).first()
+    article = Article.query.filter_by(url_title=url_title).first_or_404()
     return render_template('main/article/details.html', article=article)

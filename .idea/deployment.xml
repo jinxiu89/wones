@@ -25,7 +25,6 @@
             <excludedPath path="/app/admin/upload/__pycache__" />
             <excludedPath path="/app/main/article/__pycache__" />
             <excludedPath path="/app/main/index/__pycache__" />
-            <excludedPath path="/migrations" />
             <excludedPath path="/gunicorn.conf" />
           </excludedPaths>
         </serverdata>

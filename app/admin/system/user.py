@@ -11,10 +11,12 @@ from app.forms.user import UserForm
 from werkzeug.security import generate_password_hash
 from db_exts import db
 from flask import flash, request, jsonify
+from app.decorate import admin_login
 
 
 # 用户列表
 @admin.route("/system/user")
+@admin_login
 def system_user():
     query = User.query
     result = query.all()
@@ -24,6 +26,7 @@ def system_user():
 
 # 用户新增
 @admin.route("/system/user/add", methods=['POST', 'GET'])
+@admin_login
 def system_user_add():
     form = UserForm()
     if form.validate_on_submit():
@@ -42,6 +45,7 @@ def system_user_add():
 
 
 @admin.route("/system/user/edit/<int:id>", methods=["POST", "GET"])
+@admin_login
 def system_user_edit(id=None):
     if id is None or not id:
         pass

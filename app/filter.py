@@ -9,11 +9,11 @@ from manager import app
 @app.template_filter("getCategory")
 def get_category(id):
     from app.models.models import Category
-    category = Category.query.filter_by(id=int(id)).first()
+    category = Category.query.filter_by(id=int(id)).first_or_404()
     return category.name
 
 
 @app.template_filter("getUser")
 def get_user(id):
     from app.models.models import User
-    return User.query.filter_by(id=int(id)).first().description
+    return User.query.filter_by(id=int(id)).first_or_404().description

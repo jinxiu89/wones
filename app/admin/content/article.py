@@ -20,6 +20,7 @@ def article():
 
 
 @admin.route("/content/article/add", methods=["GET", "POST"])
+@admin_login
 def article_add():
     form = ArticleForm()
     category = Category.query.all()
@@ -35,6 +36,7 @@ def article_add():
 
 
 @admin.route("/content/article/edit/<int:id>", methods=['GET', 'POST'])
+@admin_login
 def article_edit(id=None):
     if id is None:
         result = {
