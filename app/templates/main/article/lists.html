@@ -17,7 +17,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a
-                            href="{{ url_for("main.article_details",url_title=vo.url_title) }}">{{ vo.title }}</a></h4>
+                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title }}</a></h4>
                     <p>{{ vo.description }}</p>
                     <span>{{ vo.category_id|getCategory }}</span>
                 </div>

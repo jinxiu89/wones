@@ -23,5 +23,5 @@ def hot():
     :return:
     """
     from app.models.models import Article
-    hot_article = Article.query.limit(5).all()
+    hot_article = Article.query.filter(Article.count > 5).order_by(Article.count.desc()).limit(5).all()
     return dict(hot_article=hot_article)

@@ -9,7 +9,7 @@
         {% for vo in result %}
             <div class="media">
                 <div class="media-left media-middle">
-                    <a href="{{ url_for("main.article_details",url_title=vo.url_title) }}">
+                    <a href="{{ url_for("main.article_details",id=vo.id) }}">
                         <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
                              alt="占位"
                              style="width: 80px;height: 80px;">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a
-                            href="{{ url_for("main.article_details",url_title=vo.url_title) }}">{{ vo.title }}</a></h4>
+                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title }}</a></h4>
                     <p>{{ vo.description }}</p>
                     <span>{{ vo.category_id|getCategory }}</span>
                 </div>

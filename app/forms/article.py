@@ -123,7 +123,7 @@ class ArticleForm(FlaskForm):
             image=upload_image(self.image.data),
             content=self.content.data,
             relationship=self.relationship.data,
-            status=self.status.data,
+            status=self.status.data
         )
         db.session.add(article)
         db.session.commit()

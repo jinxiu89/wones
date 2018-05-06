@@ -8,9 +8,9 @@ from app.models.models import Article
 from db_exts import db
 
 
-@main.route("/article/details/<url_title>")
-def article_details(url_title):
-    article = Article.query.filter_by(url_title=url_title).first_or_404()
+@main.route("/article/details/<int:id>")
+def article_details(id):
+    article = Article.query.filter_by(id=id).first_or_404()
     if article.count is None:
         article.count = 1
     article.count = article.count + 1
