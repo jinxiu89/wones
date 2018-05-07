@@ -14,7 +14,7 @@ from app.models.models import Category, Article
 def article():
     query = Article.query
     count = query.count()
-    result = query.all()
+    result = query.order_by(Article.update_time.desc()).all()
     return render_template("admin/content/article/article.html", count=count, article=result)
 
 

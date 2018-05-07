@@ -10,7 +10,7 @@ from app.models.models import Article
 @main.route("/")
 def index():
     query = Article.query
-    result = query.order_by(Article.update_time.desc()).all()
+    result = query.order_by(Article.update_time.asc()).all()
     count = query.count()
 
     return render_template("main/index/index.html", count=count, result=result)
