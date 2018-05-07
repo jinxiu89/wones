@@ -7,7 +7,6 @@ from app.admin.content import *
 from app.decorate import admin_login
 from app.forms.article import ArticleForm
 from app.models.models import Category, Article
-from utils import del_image
 
 
 @admin.route("/content/article")
@@ -59,12 +58,8 @@ def article_edit(id=None):
         form.status.data = result.status
     if request.method == "POST":
         if form.validate_on_submit():
-            image = result.image
-            if del_image(image) is True:
-                if form.edit(result):
-                    flash("保存成功", "ok")
-                else:
-                    flash("保存失败", "error")
+            if form.edit(result):
+                flash("保存成功", "ok")
             else:
-                flash("图片删除错误", "error")
+                flash("保存失败", "error")
     return render_template("admin/content/article/article_edit.html", form=form, result=result)

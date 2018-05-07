@@ -17,3 +17,13 @@ def get_category(id):
 def get_user(id):
     from app.models.models import User
     return User.query.filter_by(id=int(id)).first_or_404().description
+
+
+@app.template_filter("cutTitle")
+def cut_str(string):
+    return string[0:18]
+
+
+@app.template_filter("cutDes")
+def cut_des(string):
+    return string[0:32] + "..."

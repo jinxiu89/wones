@@ -17,11 +17,12 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading"><a
-                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title }}</a></h4>
-                    <p>{{ vo.description }}</p>
+                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
+                    <p>{{ vo.description|cutDes }}</p>
                     <span>{{ vo.category_id|getCategory }}</span>
                 </div>
             </div>
+            <hr>
         {% endfor %}
     </div>
 {% endblock %}

@@ -19,12 +19,14 @@
                 <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
                 | <span>{{ article.update_time }}</span>
             </div>
-            <div class="content">
+            <div class="content" style="word-wrap: break-word;">
                 <img src="{{ url_for("static",filename="uploads/images/"+article.image) }}" alt=""
                      class="img-responsive" style="padding-bottom: 20px">
                 {{ article.content|safe }}
-                <hr>
-                {{ article.relationship|safe }}
+                {% if article.relationship %}
+                    <hr>
+                    {{ article.relationship|safe }}
+                {% endif %}
                 <hr>
                 本文链接:<a
                     href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>

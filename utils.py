@@ -18,7 +18,7 @@ def change_filename(filename):
 # 上传图片
 def upload_image(image):
     if not image:
-        return '20180505165911c7d4f0ec07b1451398c4f583251979d4.jpeg'
+        return '2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg'
     image = image
     if not os.path.exists(current_app.config.get('IMG_DIR')):
         os.makedirs(current_app.config.get('IMG_DIR'))
