@@ -2,6 +2,14 @@
   <dictionary name="thomas">
     <words>
       <w>jinxiu</w>
+      <w>lockfile</w>
+      <w>perfix</w>
+      <w>pidfile</w>
+      <w>retval</w>
+      <w>subprocesses</w>
+      <w>supervisorctl</w>
+      <w>supervisord</w>
+      <w>swiper</w>
       <w>webuploader</w>
     </words>
   </dictionary>

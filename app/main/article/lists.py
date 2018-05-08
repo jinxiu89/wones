@@ -10,5 +10,5 @@ from flask import render_template
 @main.route("/article/list/<name>")
 def article_lists(name):
     parent = Category.query.filter_by(name=name).first_or_404()
-    article = parent.Article
+    article = parent.Article.order_by(Article.id.desc())
     return render_template('main/article/lists.html', article=article, parent=parent)

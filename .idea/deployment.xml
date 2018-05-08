@@ -26,6 +26,7 @@
             <excludedPath path="/app/main/article/__pycache__" />
             <excludedPath path="/app/main/index/__pycache__" />
             <excludedPath path="/gunicorn.conf" />
+            <excludedPath path="/shell.sh" />
           </excludedPaths>
         </serverdata>
       </paths>
