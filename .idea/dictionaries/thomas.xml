@@ -6,6 +6,7 @@
       <w>perfix</w>
       <w>pidfile</w>
       <w>retval</w>
+      <w>smallimage</w>
       <w>subprocesses</w>
       <w>supervisorctl</w>
       <w>supervisord</w>

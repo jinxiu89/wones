@@ -5,7 +5,7 @@
 from app.forms import *
 from app.models.models import Banner
 from db_exts import db
-from utils import upload_image
+from utils import upload_image, del_image
 from flask import session
 from datetime import datetime
 
@@ -32,7 +32,15 @@ class BannerForm(FlaskForm):
         }
     )
     image = FileField(
-        label="上传图片",
+        label="电脑端图片",
+        validators=[DataRequired("请上传图片")],
+        render_kw={
+            "class": "btn btn-default",
+            "style": "height:37px"
+        }
+    )
+    smallimage = FileField(
+        label="手机端图片",
         validators=[DataRequired("请上传图片")],
         render_kw={
             "class": "btn btn-default",
@@ -61,6 +69,7 @@ class BannerForm(FlaskForm):
             user_id=session.get("id"),
             title=self.title.data,
             image=upload_image(self.image.data),
+            smallimage=upload_image(self.smallimage.data),
             url=self.url.data,
             status=self.status.data
         )
@@ -71,7 +80,14 @@ class BannerForm(FlaskForm):
     def edit(self, banner):
         banner.user_id = session.get("id")
         banner.title = self.title.data
-        banner.image = upload_image(self.image.data)
+        if self.image.data:
+            if banner.image is not None:
+                del_image(banner.image)
+            banner.image = upload_image(self.image.data)
+        if self.smallimage.data:
+            if banner.smallimage is not None:
+                del_image(banner.smallimage)
+            banner.smallimage = upload_image(self.smallimage.data)
         banner.url = self.url.data
         banner.status = self.status.data
         banner.update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")

@@ -137,7 +137,8 @@ class ArticleForm(FlaskForm):
         article.keywords = self.keywords.data
         article.description = self.description.data
         if self.image.data:
-            del_image(article.image)
+            if article.image is not None:
+                del_image(article.image)
             article.image = upload_image(self.image.data)
         article.content = self.content.data
         article.relationship = self.relationship.data

@@ -22,7 +22,7 @@ def upload_image(image):
     image = image
     if not os.path.exists(current_app.config.get('IMG_DIR')):
         os.makedirs(current_app.config.get('IMG_DIR'))
-        os.chmod(current_app.config.get('IMG_DIR'), 'rw')
+        os.chmod(current_app.config.get('IMG_DIR'), rw)
     img = change_filename(image.filename)
     image.save(current_app.config.get('IMG_DIR') + img)
     return img

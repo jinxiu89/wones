@@ -94,6 +94,7 @@ class Banner(BaseModel):
     user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
     title = db.Column(db.String(64))
     image = db.Column(db.String(255))
+    smallimage = db.Column(db.String(255))
     url = db.Column(db.String(255))
     status = db.Column(db.SmallInteger, default=int(1))
 

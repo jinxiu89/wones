@@ -17,7 +17,7 @@
                         href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
                 </span> |
                 <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
-                | <span>{{ article.update_time }}</span>
+                | <span>{{ article.create_time }}</span>
             </div>
             <div class="content" style="word-wrap: break-word;">
                 <img src="{{ url_for("static",filename="uploads/images/"+article.image) }}" alt=""
