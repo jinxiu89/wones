@@ -20,7 +20,7 @@
     <div class="cl pd-5 bg-1 bk-gray mt-20">
                 <span class="l">
                     <a href="javascript:void(0);"
-                       onclick="add('添加栏目','{{ url_for("admin.system_category_add") }}','800','680')"
+                       onclick="add('添加栏目','{{ url_for("admin.system_category_add") }}','800','420')"
                        class="btn btn-primary radius">
                         <i class="Hui-iconfont">&#xe600;</i> 添加栏目
                     </a>
@@ -49,7 +49,7 @@
             <td>{{ vo.description }}</td>
             <td>{{ vo.create_time }}</td>
             <td class="td-manage" style="font-size: 18px">
-                <a href="javascript:void(0);" onclick="edit('编辑分类','{{ url_for('admin.system_category_edit',id=vo.id) }}',720,320)"><i class="Hui-iconfont" style="color: #00B83F">&#xe6df;</i></a>
+                <a href="javascript:void(0);" onclick="edit('编辑分类','{{ url_for('admin.system_category_edit',id=vo.id) }}',720,420)"><i class="Hui-iconfont" style="color: #00B83F">&#xe6df;</i></a>
                 <a href="javascript:void(0);" onclick=""><i class="Hui-iconfont" style="color: #1773ee">&#xe679;</i></a>
                 <a href="javascript:void(0);" onclick=""><i class="Hui-iconfont" style="color: #1773ee">&#xe674;</i></a>
             </td>

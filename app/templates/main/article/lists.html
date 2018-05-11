@@ -4,6 +4,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 {% endblock %}
+{% block banner %}
+    <div class="" style="padding-top: 50px">
+        <img src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt="">
+    </div>
+{% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in article %}

@@ -46,6 +46,8 @@ class Category(BaseModel):
     keywords = db.Column(db.String(32))
     description = db.Column(db.String(255))
     short = db.Column(db.Integer)
+    image = db.Column(db.String(255))
+    smallimage = db.Column(db.String(255))
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
     Article = db.relationship("Article", backref="category", lazy='dynamic')
 

@@ -26,6 +26,22 @@ class CategoryForm(FlaskForm):
             "id": "keywords",
         }
     )
+    image = FileField(
+        label="电脑端图片",
+        validators=[DataRequired("请上传图片")],
+        render_kw={
+            "class": "btn btn-default",
+            "style": "height:37px"
+        }
+    )
+    smallimage = FileField(
+        label="手机端图片",
+        validators=[DataRequired("请上传图片")],
+        render_kw={
+            "class": "btn btn-default",
+            "style": "height:37px"
+        }
+    )
     description = StringField(
         label="描述",
         validators=[DataRequired("请输入描述")],

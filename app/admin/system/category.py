@@ -9,6 +9,7 @@ from werkzeug.security import generate_password_hash
 from db_exts import db
 from flask import flash, request, jsonify
 from app.decorate import admin_login
+from utils import upload_image, del_image
 
 
 @admin.route("/system/category")
@@ -30,7 +31,9 @@ def system_category_add():
             result = Category(
                 name=data['name'],
                 keywords=data['keywords'],
-                description=data['description']
+                description=data['description'],
+                image=upload_image(data['image']),
+                smallimage=upload_image(data['smallimage'])
             )
             db.session.add(result)
             db.session.commit()
@@ -55,6 +58,8 @@ def system_category_edit(id=None):
             result.name = data['name']
             result.keywords = data['keywords']
             result.description = data['description']
+            result.image = upload_image(data['image'])
+            result.smallimage = upload_image(data['smallimage'])
             db.session.add(result)
             db.session.commit()
             flash("保存成功", "ok")

@@ -1,11 +1,29 @@
 {% extends "admin/base/base_add.html" %}
 {% block form %}
-    <form role="form" method="post" class="form form-horizontal" id="form-admin-add">
+    <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
         <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.name.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.name(value=result.name) }}
                 {% for error in form.name.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.image.label }}</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.image }}
+                {% for error in form.image.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.smallimage.label }}</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                {{ form.smallimage }}
+                {% for error in form.smallimage.errors %}
                     <span class="c-red">{{ error }}</span>
                 {% endfor %}
             </div>
