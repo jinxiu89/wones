@@ -107,7 +107,7 @@ class ArticleForm(FlaskForm):
 
     )
 
-    def __init__(self, *args, **kwargs) -> object:
+    def __init__(self, *args, **kwargs):
         super(ArticleForm, self).__init__(*args, **kwargs)
 
     submit = SubmitField(render_kw={"class": "btn btn-success radius size-L", "value": "       保      存     "})

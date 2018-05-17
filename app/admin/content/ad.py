@@ -5,9 +5,9 @@
 from flask import flash, request, jsonify, session
 from app.admin.content import *
 from app.decorate import admin_login
-from app.forms.ad import AdFormForm
+from app.forms.ad import AdForm
 from app.models.models import Ad
-from utils import upload_image
+from utils import upload_image, del_image
 
 
 @admin.route("/content/ad")
@@ -16,7 +16,8 @@ def ad():
     query = Ad.query
     count = query.count()
     result = query.all()
-    return render_template("admin/content/ad/ad.html", count=count, banner=result)
+    print(count)
+    return render_template("admin/content/ad/index.html", count=count, result=result)
 
 
 @admin.route("/content/ad/add", methods=["GET", "POST"])
@@ -45,27 +46,26 @@ def ad_edit(id=None):
         if form.validate_on_submit():
             form.edit(result)
             flash("保存成功", "ok")
-    return render_template("admin/content/ad/banner_edit.html", form=form, result=result)
-
+    return render_template("admin/content/ad/ad_edit.html", form=form, result=result)
 
 @admin.route("/content/ad/stop/<int:id>", methods=["POST", "GET"])
-def banner_stop(id=None):
-    result = Banner.query.get_or_404(id)
+def ad_stop(id=None):
+    result =Ad.query.get_or_404(id)
     result.status = 2
-    Banner.stop(result)
+    Ad.action(result)
     return jsonify({"status": 1, "data": "禁用成功"})
 
 
 @admin.route("/content/ad/start/<int:id>", methods=["GET", "POST"])
-def banner_start(id=None):
-    result = Banner.query.get_or_404(id)
+def ad_start(id=None):
+    result = Ad.query.get_or_404(id)
     result.status = 1
-    Banner.start(result)
+    Ad.action(result)
     return jsonify({"status": 1, "data": "启用成功"})
 
 
 @admin.route("/content/ad/del/<int:id>", methods=["GET", "POST"])
-def banner_del(id=None):
-    result = Banner.query.get_or_404(id)
-    Banner.delete(result)
+def ad_del(id=None):
+    result = Ad.query.get_or_404(id)
+    Ad.delete(result)
     return jsonify({"status": 1, "data": "成功"})

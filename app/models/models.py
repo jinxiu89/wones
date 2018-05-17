@@ -66,6 +66,19 @@ class Ad(BaseModel):
     def __repr__(self):
         return '<name %r>' % self.name
 
+    @staticmethod
+    def action(ad):
+        db.session.add(ad)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def delete(ad):
+        if ad.image and os.path.exists(current_app.config.get('IMG_DIR') + ad.image):
+            os.remove(current_app.config.get('IMG_DIR') + ad.image)
+        db.session.delete(ad)
+        if db.session.commit():
+            return True
 
 class Article(BaseModel):
     """
