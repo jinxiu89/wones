@@ -24,7 +24,7 @@
       <script src="https://cdn.bootcss.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body style="background: #f3f3f3">
 {% block navbar %}
     <nav class="navbar navbar-inverse navbar-fixed-top site-navbar">
         <div class="container">
@@ -56,21 +56,22 @@
 {% block banner %}
     <!-- Jumbotron -->
 {% endblock %}
-<main class="benefits container" style="padding-top: 30px">
+<main class="benefits container" style="padding-top: 15px">
     <div class="row">
         {% block main %}
             <!--页面主体在这里展开-->
         {% endblock %}
         {% block main_left %}
-            <div class="col-xs-12 col-md-4" style="border-left:1px solid#dddddd;padding-top: 50px">
-                <h4>最热门文章</h4>
-                <ul class="nav">
-                    {% for vo in hot_article %}
-                        <li class=""><a href="{{ url_for("main.article_details",id=vo.id) }}"
-                                        style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
-                    {% endfor %}
-
-                </ul>
+            <div class="col-xs-12 col-md-4" style="padding-top: 15px">
+                <div style="background:#fff;padding: 15px">
+                    <h4>最热门文章</h4>
+                    <ul class="nav">
+                        {% for vo in hot_article %}
+                            <li class=""><a href="{{ url_for("main.article_details",id=vo.id) }}"
+                                            style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         {% endblock %}
     </div>

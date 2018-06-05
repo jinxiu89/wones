@@ -13,7 +13,12 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 {% for vo in banner %}
-                <div class="swiper-slide"><img class="" src="{{ url_for('static',filename="uploads/images/"+vo.image) }}"></div>
+                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"
+                                                                 src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">
+                    </div>
+                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"
+                                                                 src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">
+                    </div>
                 {% endfor %}
             </div>
             <!-- Add Pagination -->
@@ -27,12 +32,11 @@
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in result %}
-            <div class="media">
+            <div class="media" style="padding: 15px;background: #fff;">
                 <div class="media-left media-middle">
-                    <a href="{{ url_for("main.article_details",id=vo.id) }}">
-                        <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
-                             alt="占位"
-                             style="width: 95px;height: 95px;">
+                    <a href="{{ url_for("main.article_details",id=vo.id) }}" style="width: 90px;display: block">
+                        <img class="media-object img-responsive" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                             alt="占位" >
                     </a>
                 </div>
                 <div class="media-body">
@@ -42,7 +46,6 @@
                     <span>{{ vo.category_id|getCategory }}</span>
                 </div>
             </div>
-            <hr>
         {% endfor %}
     </div>
 {% endblock %}
