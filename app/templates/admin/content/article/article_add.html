@@ -1,4 +1,7 @@
 {% extends "admin/base/base_add.html" %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
+{% endblock %}
 {% block form %}
     <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
         <div class="row cl">
@@ -35,6 +38,15 @@
                 {% for error in form.url_title.errors %}
                     <span class="c-red">{{ error }}</span>
                 {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div id="markdown">
+                    <textarea name="body_markdown" id="body_markdown" style="display: none"></textarea>
+                    <textarea name="body_html" id="body_html" style="display: none"></textarea>
+                </div>
             </div>
         </div>
         <div class="row cl">
@@ -99,6 +111,7 @@
             src="{{ url_for('static',filename='admin/lib/jquery.validation/1.14.0/messages_zh.js') }}"></script>
     <script type="text/javascript"
             src="{{ url_for('static',filename='lib/kindeditor/kindeditor-all-min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='lib/edit.markdown/editormd.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='admin/h-ui.admin/js/dialog.js') }}"></script>
     {% for message in get_flashed_messages(category_filter=["error"]) %}
         <script type="text/javascript">
@@ -146,5 +159,16 @@
                 }
             })
         }))
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        editormd("markdown",{
+            width:"90%",
+            height:320,
+            syncScrolling:"single",
+            path:{{ url_for('static',filename="lib/edit.markdown/lib") }},
+            saveHTMLToTextarea:true
+        })
+    })
     </script>
 {% endblock %}
