@@ -41,15 +41,6 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
-            <div class="formControls col-xs-8 col-sm-9">
-                <div id="markdown">
-                    <textarea name="body_markdown" id="body_markdown" style="display: none"></textarea>
-                    <textarea name="body_html" id="body_html" style="display: none"></textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.keywords }}
@@ -70,7 +61,13 @@
         <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
-                {{ form.content }}
+                {#                {{ form.content }}#}
+                <div id="markdown">
+                    <textarea id="markdown-doc" name="markdown-doc"
+                              style="display:none;"></textarea>
+                    <!-- 注意：name属性的值-->
+                    <textarea id="markdown-html-code" name="markdown-html-code" style="display:none;"></textarea>
+                </div>
                 {% for error in form.content.errors %}
                     <span class="c-red">{{ error }}</span>
                 {% endfor %}
@@ -148,7 +145,7 @@
         KindEditor.ready((function (K) {
             window.editor = K.create('#editor1', {
                 width: "100%",
-                height: "400px",
+                height: "200px",
                 LangType: "zh-CN",
                 filterMode: false,
                 afterCreate: function () {
@@ -161,14 +158,24 @@
         }))
     </script>
     <script type="text/javascript">
-    $(function () {
-        editormd("markdown",{
-            width:"90%",
-            height:320,
-            syncScrolling:"single",
-            path:{{ url_for('static',filename="lib/edit.markdown/lib") }},
-            saveHTMLToTextarea:true
-        })
-    })
+        var Editor;
+        $(function () {
+            Editor = editormd("markdown", {
+                width: "100%",
+                height: 740,
+                path: "{{ url_for("static",filename="lib/edit.markdown/lib/") }}",
+                htmlDecode: "style,script,iframe",
+                tex: true,
+                emoji: true,
+                taskList: true,
+                flowChart: true,
+                sequenceDiagram: true,
+                saveHTMLToTextarea : true,
+                //image upload
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: "{{ url_for('admin.markdown') }}"
+            });
+        });
     </script>
 {% endblock %}

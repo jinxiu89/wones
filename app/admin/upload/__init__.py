@@ -19,3 +19,15 @@ def upload():
     img = change_filename(image.filename)
     image.save(current_app.config.get('IMG_DIR') + img)
     return jsonify({"error": 0, "url": url_for("static", filename="uploads/images/" + img)})
+
+
+@admin.route("/markdown", methods=["POST"])
+@admin_login
+def markdown():
+    image = request.files['editormd-image-file']
+    if not os.path.exists(current_app.config.get('IMG_DIR')):
+        os.makedirs(current_app.config.get('IMG_DIR'))
+        os.chmod(current_app.config.get('IMG_DIR'), rw)
+    img = change_filename(image.filename)
+    image.save(current_app.config.get('IMG_DIR') + img)
+    return jsonify({"success": 1, "url": url_for("static", filename="uploads/images/" + img)})

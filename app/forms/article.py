@@ -121,7 +121,7 @@ class ArticleForm(FlaskForm):
             keywords=self.keywords.data,
             description=self.description.data,
             image=upload_image(self.image.data),
-            content=self.content.data,
+            content=self.markdown-html-code.data,
             relationship=self.relationship.data,
             status=self.status.data
         )
