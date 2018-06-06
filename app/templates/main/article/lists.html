@@ -6,7 +6,8 @@
 {% endblock %}
 {% block banner %}
     <div class="" style="padding-top: 50px">
-        <img src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt="">
+        <img class="visible-lg visible-md" src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt="" style="height: auto;width: 100%">
+        <img class="visible-sm visible-xs" src="{{ url_for('static',filename="uploads/images/"+parent.smallimage) }}" alt="" style="height: auto;width: 100%">
     </div>
 {% endblock %}
 {% block main %}
