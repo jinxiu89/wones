@@ -82,6 +82,11 @@ class ArticleForm(FlaskForm):
             "id": "editor"
         }
     )
+    markdown = TextAreaField(
+        label="markdown",
+        description="markdown"
+
+    )
     relationship = TextAreaField(
         label="相关文章",
         description="相关文章",
@@ -122,6 +127,7 @@ class ArticleForm(FlaskForm):
             description=self.description.data,
             image=upload_image(self.image.data),
             content=self.content.data,
+            markdown=self.markdown.data,
             relationship=self.relationship.data,
             status=self.status.data,
         )
@@ -141,6 +147,7 @@ class ArticleForm(FlaskForm):
                 del_image(article.image)
             article.image = upload_image(self.image.data)
         article.content = self.content.data
+        article.markdown = self.markdown.data
         article.relationship = self.relationship.data
         article.update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         article.status = self.status.data

@@ -1,4 +1,5 @@
 {% extends "admin/base/base_add.html" %}
+{% block title %}<title>添加文章</title>{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
 {% endblock %}
@@ -65,6 +66,7 @@
                     <textarea id="markdown-doc" name="markdown-doc" style="display:none;" placeholder="输入markdown语法右边显示预览"></textarea>
                     <!-- 注意：name属性的值-->
                     <textarea id="markdown-html-code" name="content" style="display:none;"></textarea>
+                    <textarea name="markdown" id="markdown" style="display: none;"></textarea>
                 </div>
             </div>
         </div>
@@ -174,8 +176,8 @@
         });
         //拿到 markdown生成的html文档，塞入content中，最后被flask的form调用
         $(".btn").click(function () {
-            var content=Editor.getHTML();
-            $("#markdown-html-code").text(content)
+            var content=Editor.getPreviewedHTML();
+            $("#markdown-html-code").text(content);
         });
     </script>
 {% endblock %}

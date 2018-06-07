@@ -80,6 +80,7 @@ class Ad(BaseModel):
         if db.session.commit():
             return True
 
+
 class Article(BaseModel):
     """
     文章表，只有注册的用户才能发表文章，必须制定分类
@@ -94,6 +95,7 @@ class Article(BaseModel):
     description = db.Column(db.String(255))
     image = db.Column(db.String(255))
     content = db.Column(db.Text)
+    markdown = db.Column(db.Text)
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
     reply = db.relationship("Reply", backref="article")
