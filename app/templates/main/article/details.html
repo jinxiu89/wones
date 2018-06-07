@@ -7,9 +7,11 @@
 {% block sking %}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
+    <!-- markdown -->
+    <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
 {% endblock %}
 {% block main %}
-    <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff;">
         <div class="section">
             <div class="page-header">
                 <h3>{{ article.title }}</h3>
