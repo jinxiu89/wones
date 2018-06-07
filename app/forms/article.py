@@ -5,7 +5,7 @@
 from app.forms import *
 from app.models.models import Article
 from db_exts import db
-from flask import session
+from flask import session, request
 from utils import upload_image, del_image
 from datetime import datetime
 
@@ -121,9 +121,9 @@ class ArticleForm(FlaskForm):
             keywords=self.keywords.data,
             description=self.description.data,
             image=upload_image(self.image.data),
-            content=self.markdown-html-code.data,
+            content=self.content.data,
             relationship=self.relationship.data,
-            status=self.status.data
+            status=self.status.data,
         )
         db.session.add(article)
         db.session.commit()

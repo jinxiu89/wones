@@ -61,16 +61,11 @@
         <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
-                {#                {{ form.content }}#}
                 <div id="markdown">
-                    <textarea id="markdown-doc" name="markdown-doc"
-                              style="display:none;"></textarea>
+                    <textarea id="markdown-doc" name="markdown-doc" style="display:none;" placeholder="输入markdown语法右边显示预览"></textarea>
                     <!-- 注意：name属性的值-->
-                    <textarea id="markdown-html-code" name="markdown-html-code" style="display:none;"></textarea>
+                    <textarea id="markdown-html-code" name="content" style="display:none;"></textarea>
                 </div>
-                {% for error in form.content.errors %}
-                    <span class="c-red">{{ error }}</span>
-                {% endfor %}
             </div>
         </div>
         <div class="row cl">
@@ -176,6 +171,11 @@
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL: "{{ url_for('admin.markdown') }}"
             });
+        });
+        //拿到 markdown生成的html文档，塞入content中，最后被flask的form调用
+        $(".btn").click(function () {
+            var content=Editor.getHTML();
+            $("#markdown-html-code").text(content)
         });
     </script>
 {% endblock %}

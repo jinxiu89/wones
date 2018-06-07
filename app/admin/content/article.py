@@ -27,7 +27,6 @@ def article_add():
     if not category:
         category.insert(0, (1, "根分类"))
     form.category_id.choices = category
-    print(request.markdown-html-doc.data)
     if request.method == "POST":
         if form.validate_on_submit():
             form.create()
