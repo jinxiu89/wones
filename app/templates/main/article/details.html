@@ -5,10 +5,10 @@
     <meta name="keywords" content="{{ article.keywords }}">
 {% endblock %}
 {% block sking %}
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
     <!-- markdown -->
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff;padding-bottom: 15px">
