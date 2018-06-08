@@ -5,7 +5,7 @@
 from app.forms import *
 from app.models.models import Article
 from db_exts import db
-from flask import session, request
+from flask import session
 from utils import upload_image, del_image
 from datetime import datetime
 

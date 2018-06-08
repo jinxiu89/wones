@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
 {% endblock %}
 {% block main %}
-    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff;">
+    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff;padding-bottom: 15px">
         <div class="section">
             <div class="page-header">
                 <h3>{{ article.title }}</h3>
@@ -22,8 +22,6 @@
                 | <span>{{ article.create_time }}</span>
             </div>
             <div class="content" style="word-wrap: break-word;">
-                <img src="{{ url_for("static",filename="uploads/images/"+article.image) }}" alt=""
-                     class="img-responsive" style="padding-bottom: 20px">
                 {{ article.content|safe }}
                 {% if article.relationship %}
                     <hr>

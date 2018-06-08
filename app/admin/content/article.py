@@ -2,7 +2,7 @@
 # _*_ coding:utf-8_*_
 # author:jinxiu89@163.com
 # create by thomas on 18-3-22.
-from flask import flash, request, jsonify, session
+from flask import flash, request, jsonify
 from app.admin.content import *
 from app.decorate import admin_login
 from app.forms.article import ArticleForm
