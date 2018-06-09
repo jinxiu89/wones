@@ -13,7 +13,7 @@
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in article %}
-            <div class="media">
+            <div class="media"  style="padding: 15px;background: #fff;">
                 <div class="media-left media-middle">
                     <a href="#">
                         <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
@@ -28,7 +28,6 @@
                     <span>{{ vo.category_id|getCategory }}</span>
                 </div>
             </div>
-            <hr>
         {% endfor %}
     </div>
 {% endblock %}
