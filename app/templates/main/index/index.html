@@ -47,11 +47,10 @@
                             href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
                     <p>{{ vo.description|cutDes }}</p>
                 </div>
-            <div>
-                <div style="text-align: left"><span>{{ vo.category_id|getCategory }}</span></div>
-                <div style="text-align:right ">111</div>
-            </div>
-
+                <div style="padding-top: 10px;overflow: hidden">
+                    <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                    <span style="float: right"><a href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
+                </div>
             </div>
         {% endfor %}
     </div>

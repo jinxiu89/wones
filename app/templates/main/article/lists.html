@@ -16,12 +16,12 @@
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in article %}
             <div class="media" style="padding: 15px;background: #fff;">
-                {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
+                {% if vo.image !="2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
                     <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
-                                 alt="占位"
-                                 style="width: 95px;height: 95px;">
+                        <a href="{{ url_for("main.article_details",id=vo.id) }}" style="width: 90px;display: block">
+                            <img class="media-object img-responsive"
+                                 src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                                 alt="占位">
                         </a>
                     </div>
                 {% endif %}
@@ -29,7 +29,10 @@
                     <h4 class="media-heading"><a
                             href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
                     <p>{{ vo.description|cutDes }}</p>
-                    <span>{{ vo.category_id|getCategory }}</span>
+                </div>
+                <div style="padding-top: 10px;overflow: hidden">
+                    <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                    <span style="float: right"><a href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
                 </div>
             </div>
         {% endfor %}
