@@ -59,7 +59,6 @@ def article_edit(id=None):
     if request.method == "POST":
         if form.validate_on_submit():
             data = form.data
-            print(data['markdown'])
             if form.edit(result):
                 flash("保存成功", "ok")
             else:

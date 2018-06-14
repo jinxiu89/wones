@@ -6,21 +6,25 @@
 {% endblock %}
 {% block banner %}
     <div class="" style="padding-top: 50px">
-        <img class="visible-lg visible-md" src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt="" style="height: auto;width: 100%">
-        <img class="visible-sm visible-xs" src="{{ url_for('static',filename="uploads/images/"+parent.smallimage) }}" alt="" style="height: auto;width: 100%">
+        <img class="visible-lg visible-md" src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt=""
+             style="height: auto;width: 100%">
+        <img class="visible-sm visible-xs" src="{{ url_for('static',filename="uploads/images/"+parent.smallimage) }}"
+             alt="" style="height: auto;width: 100%">
     </div>
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         {% for vo in article %}
-            <div class="media"  style="padding: 15px;background: #fff;">
-                <div class="media-left media-middle">
-                    <a href="#">
-                        <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
-                             alt="占位"
-                             style="width: 95px;height: 95px;">
-                    </a>
-                </div>
+            <div class="media" style="padding: 15px;background: #fff;">
+                {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
+                    <div class="media-left media-middle">
+                        <a href="#">
+                            <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                                 alt="占位"
+                                 style="width: 95px;height: 95px;">
+                        </a>
+                    </div>
+                {% endif %}
                 <div class="media-body">
                     <h4 class="media-heading"><a
                             href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
