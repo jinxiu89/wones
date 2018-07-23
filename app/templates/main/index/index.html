@@ -31,7 +31,8 @@
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
-        {% for vo in result %}
+        <div style="background: #fff">
+            {% for vo in result %}
             <div class="media" style="padding: 15px;background: #fff;">
                 {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
                     <div class="media-left media-middle">
@@ -53,6 +54,7 @@
                 </div>
             </div>
         {% endfor %}
+        </div>
     </div>
 {% endblock %}
 {% block js %}
