@@ -11,32 +11,31 @@
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
 {% endblock %}
 {% block main %}
-    <div class="row" style="padding-top: 50px"></div>
-    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff;padding-bottom: 15px">
-        <div class="">
-            <div class="page-header">
-                <h3>{{ article.title }}</h3>
-                <span style="color: #0a6999"><a
-                        href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
+    <div class="col-xs-12 col-md-8" style="background: #fff;padding-bottom: 15px">
+            <div class="">
+                <div class="page-header">
+                    <h3>{{ article.title }}</h3>
+                    <span style="color: #0a6999"><a
+                            href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
                 </span> |
-                <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
-                | <span>{{ article.create_time }}</span>
-            </div>
-            <div class="content" style="word-wrap: break-word;">
-                {{ article.content|safe }}
-                {% if article.relationship %}
+                    <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
+                    | <span>{{ article.create_time }}</span>
+                </div>
+                <div class="content" style="word-wrap: break-word;">
+                    {{ article.content|safe }}
+                    {% if article.relationship %}
+                        <hr>
+                        {{ article.relationship|safe }}
+                    {% endif %}
                     <hr>
-                    {{ article.relationship|safe }}
-                {% endif %}
-                <hr>
-                本文链接:<a
-                    href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>
+                    本文链接:<a
+                        href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>
+                </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 {% block js %}
     <script type="text/javascript">
-    $("p img").addClass("img-responsive");
+        $("p img").addClass("img-responsive");
     </script>
 {% endblock %}
