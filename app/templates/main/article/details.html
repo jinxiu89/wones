@@ -10,6 +10,17 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
 {% endblock %}
+{% block nav %}
+<div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="{{ url_for("main.article_lists",name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a></li>
+            <li><a href="" class="active">{{ article.title }}</a></li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
 {% block main %}
     <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
             <div style="background: #fff;padding: 30px">
@@ -19,7 +30,8 @@
                             href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
                 </span> |
                     <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
-                    | <span>{{ article.create_time }}</span>
+                    | <span>{{ article.create_time }}</span> |
+                    <span>共有<strong class="text-success">{{ article.count }}</strong>关注了这篇文章</span>
                 </div>
                 <div class="content" style="word-wrap: break-word;">
                     {{ article.content|safe }}

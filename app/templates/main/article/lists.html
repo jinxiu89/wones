@@ -4,6 +4,16 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 {% endblock %}
+{% block nav %}
+<div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="{{ url_for("main.article_lists",name=parent.name) }}" class="active">{{ parent.name }}</a></li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
 {% block banner %}
     <div style="margin-bottom: 15px">
         <img class="visible-lg visible-md" src="{{ url_for('static',filename="uploads/images/"+parent.image) }}" alt=""

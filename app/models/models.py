@@ -96,6 +96,7 @@ class Article(BaseModel):
     image = db.Column(db.String(255))
     content = db.Column(db.Text)
     markdown = db.Column(db.Text)
+    top = db.Column(db.SmallInteger)
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
     reply = db.relationship("Reply", backref="article")
@@ -136,6 +137,20 @@ class Banner(BaseModel):
         db.session.delete(banner)
         db.session.commit()
         return True
+
+
+class Friends(BaseModel):
+    """
+    友情链接字段
+    """
+    __tablename__ = "tb_friends"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    website = db.Column(db.String(255))
+    is_show = db.Column(db.SmallInteger, default=int(2))
+
+    def __repr__(self):
+        return "<name %r>" % self.name
 
 
 class Reply(BaseModel):
