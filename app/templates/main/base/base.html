@@ -13,6 +13,7 @@
     <link href="{{ url_for("static",filename="main/favicon.ico") }}" rel="icon" type="image/png">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for("static",filename="main/style/style.css") }}">
     {% block sking %}
         <!-- Custom styles for this template -->
 
@@ -52,17 +53,26 @@
         </div>
     </nav>
 {% endblock %}
+<div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+    </div>
+</div>
 {% block banner %}
     <!-- Jumbotron -->
 {% endblock %}
-<main class="benefits container" style="padding-top: 50px">
+<main class="benefits container">
     <div class="row">
         {% block main %}
             <!--页面主体在这里展开-->
         {% endblock %}
         {% block main_left %}
-            <div class="col-xs-12 col-md-4" style="background: #fff">
-                <div style="padding: 0 15px 15px 15px">
+            <div class="col-xs-12 col-md-4">
+                <div style="padding: 15px;background: #fff">
                     <h4>最热门文章</h4>
                     <ul class="nav">
                         {% for vo in hot_article %}

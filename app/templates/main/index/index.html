@@ -9,7 +9,7 @@
     <meta name="keywords" content="Wones">
 {% endblock %}
 {% block banner %}
-    <div style="padding-top: 50px;">
+    <div style="margin-bottom: 15px">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 {% for vo in banner %}
@@ -33,27 +33,30 @@
     <div class="col-xs-12 col-sm-6 col-md-8">
         <div style="background: #fff">
             {% for vo in result %}
-            <div class="media" style="padding: 15px;background: #fff;">
-                {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
-                    <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
-                                 alt="占位"
-                                 style="width: 95px;height: 95px;">
-                        </a>
+                <div class="media" style="padding: 15px;background: #fff;">
+                    {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object"
+                                     src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                                     alt="占位"
+                                     style="width: 95px;height: 95px;">
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="media-body">
+                        <h4 class="media-heading"><a
+                                href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
+                        <p>{{ vo.description|cutDes }}</p>
                     </div>
-                {% endif %}
-                <div class="media-body">
-                    <h4 class="media-heading"><a
-                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
-                    <p>{{ vo.description|cutDes }}</p>
+                    <div style="padding-top: 10px;overflow: hidden">
+                        <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                        <span style="float: right"><a
+                                href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
+                    </div>
                 </div>
-                <div style="padding-top: 10px;overflow: hidden">
-                    <span style="float: left">{{ vo.category_id|getCategory }}</span>
-                    <span style="float: right"><a href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
-                </div>
-            </div>
-        {% endfor %}
+                <hr>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
