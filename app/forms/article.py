@@ -23,6 +23,17 @@ class ArticleForm(FlaskForm):
             "style": "height:30px",
         }
     )
+    top = SelectField(
+        label="好文",
+        coerce=int,
+        choices=[(1, '推'), (2, '不推')],
+        default=2,
+        render_kw={
+            "class": "select valid",
+            "size": 1,
+            "style": "height:30px",
+        }
+    )
     title = StringField(
         label="标题",
         description="文章标题",
@@ -107,7 +118,8 @@ class ArticleForm(FlaskForm):
         choices=[(1, '启用'), (2, '禁用')],
         render_kw={
             "class": "select valid",
-            "size": 1
+            "size": 1,
+            "style": "height:30px",
         }
 
     )
@@ -119,6 +131,7 @@ class ArticleForm(FlaskForm):
 
     def create(self):
         article = Article(
+            top=self.top.data,
             user_id=session.get("id"),
             category_id=self.category_id.data,
             title=self.title.data,
@@ -136,6 +149,7 @@ class ArticleForm(FlaskForm):
         return article
 
     def edit(self, article):
+        article.top=self.top.data
         article.user_id = session.get("id")
         article.category_id = self.category_id.data
         article.title = self.title.data

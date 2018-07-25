@@ -51,6 +51,7 @@ def article_edit(id=None):
     form.category_id.choices = category
     result = Article.query.get_or_404(id)
     if request.method == "GET":
+        form.top.data = result.top
         form.category_id.data = result.category_id
         form.description.data = result.description
         form.content.data = result.content
