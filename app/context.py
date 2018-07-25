@@ -40,5 +40,12 @@ def top():
 
 
 @app.context_processor
+def friend():
+    from app.models.models import Friends
+    friends = Friends.query.filter(Friends.is_show == 1).order_by(Friends.id.desc()).all()
+    return dict(friends=friends)
+
+
+@app.context_processor
 def copy_right():
     return dict(copy_right=datetime.datetime.now().year)

@@ -131,6 +131,7 @@ class Banner(BaseModel):
         db.session.commit()
         return True
 
+    @staticmethod
     def delete(banner):
         if banner.image and os.path.exists(current_app.config.get('IMG_DIR') + banner.image):
             os.remove(current_app.config.get('IMG_DIR') + banner.image)
@@ -147,10 +148,31 @@ class Friends(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
     website = db.Column(db.String(255))
+    website_logo = db.Column(db.String(255))
     is_show = db.Column(db.SmallInteger, default=int(2))
 
     def __repr__(self):
         return "<name %r>" % self.name
+
+    @staticmethod
+    def stop(result):
+        db.session.add(result)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def start(result):
+        db.session.add(result)
+        db.session.commit()
+        return True
+
+    @staticmethod
+    def delete(result):
+        if result.website_logo and os.path.exists(current_app.config.get('IMG_DIR') + result.website_logo):
+            os.remove(current_app.config.get('IMG_DIR') + result.website_logo)
+        db.session.delete(result)
+        db.session.commit()
+        return True
 
 
 class Reply(BaseModel):
