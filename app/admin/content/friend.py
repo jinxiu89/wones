@@ -5,7 +5,7 @@
 from flask import flash, request, jsonify
 from app.admin.content import *
 from app.decorate import admin_login
-from app.forms.Friend import FriendForm
+from app.forms.friend import FriendForm
 from app.models.models import Friends
 
 
@@ -44,7 +44,7 @@ def friend_edit(id=None):
         if form.validate_on_submit():
             form.edit(result)
             flash("保存成功", "ok")
-    return render_template("admin/content/ad/ad_edit.html", form=form, result=result)
+    return render_template("admin/content/friend/friend_edit.html", form=form, result=result)
 
 
 @admin.route("/content/friend/stop/<int:id>", methods=["POST", "GET"])
@@ -65,6 +65,6 @@ def friend_start(id=None):
 
 @admin.route("/content/friend/del/<int:id>", methods=["GET", "POST"])
 def friend_del(id=None):
-    result = Ad.query.get_or_404(id)
-    Ad.delete(result)
+    result = Friends.query.get_or_404(id)
+    Friends.delete(result)
     return jsonify({"status": 1, "data": "成功"})

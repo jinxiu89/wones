@@ -182,6 +182,8 @@ class Reply(BaseModel):
     __tablename__ = "tb_reply"
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
+    pid = db.Column(db.Integer)
+    username = db.Column(db.String(64))
     user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
     article_id = db.Column(db.Integer, db.ForeignKey("tb_article.id"))
     reply_time = db.Column(db.DateTime, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

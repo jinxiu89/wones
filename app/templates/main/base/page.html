@@ -1,0 +1,41 @@
+{% macro page(data,url,cid) -%}
+    {% if data %}
+        <ul class="pagination pagination-sm pull-right">
+            <li><a href="{{ url_for(url,category=cid,page=1) }}">Home</a></li>
+            {% if data.has_prev %}
+                <li>
+                    <a href="{{ url_for(url,category=cid,page=data.prev_num) }}" aria-label="Previous">
+                        <span aria-hidden="true">Previous</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="{{ url_for(url,category=cid,page=data.prev_num) }}" aria-label="Previous">
+                        <span aria-hidden="true">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% for v in data.iter_pages() %}
+                {% if v == data.page %}
+                    <li class="active"><a href="{{ url_for(url,category=cid,page=v) }}">{{ v }}</a></li>
+                {% else %}
+                    <li><a href="{{ url_for(url,category=cid,page=v) }}">{{ v }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if data.has_next %}
+                <li>
+                    <a href="{{ url_for(url,category=cid,page=data.next_num) }}" aria-label="Previous">
+                        <span aria-hidden="true">Next</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="disabled">
+                    <a href="{{ url_for(url,category=cid,page=data.next_num) }}" aria-label="Previous">
+                        <span aria-hidden="true">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+            <li><a href="{{ url_for(url,category=cid,page=data.pages) }}">Last</a></li>
+        </ul>
+    {% endif %}
+{%- endmacro %}

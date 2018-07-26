@@ -6,7 +6,6 @@ from app.forms import *
 from app.models.models import Friends
 from db_exts import db
 from utils import upload_image, del_image
-from datetime import datetime
 
 
 class FriendForm(FlaskForm):

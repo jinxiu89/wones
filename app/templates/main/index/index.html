@@ -18,25 +18,25 @@
 </div>
 {% endblock %}
 {% block banner %}
-    <div style="margin-bottom: 15px">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                {% for vo in banner %}
-                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"
-                                                                         src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">
-                    </div>
-                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"
-                                                                          src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </div>
+{#    <div style="margin-bottom: 15px">#}
+{#        <div class="swiper-container">#}
+{#            <div class="swiper-wrapper">#}
+{#                {% for vo in banner %}#}
+{#                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"#}
+{#                                                                         src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">#}
+{#                    </div>#}
+{#                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"#}
+{#                                                                          src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <!-- Add Pagination -->#}
+{#            <div class="swiper-pagination"></div>#}
+{#            <!-- Add Arrows -->#}
+{#            <div class="swiper-button-next"></div>#}
+{#            <div class="swiper-button-prev"></div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
