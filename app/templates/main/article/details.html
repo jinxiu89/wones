@@ -73,7 +73,7 @@
                         <p><span>用户：</span></p>
                     {% endif %}
                     <p><span>{{ vo.content|striptags }}</span></p>
-                    <span>{{ moment(vo.reply_time).fromNow() }}</span>
+                    <span>{{ moment(vo.reply_time).fromNow(refresh=True) }}</span>
                     <hr>
                 {% endfor %}
             </div>
