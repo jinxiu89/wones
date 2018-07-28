@@ -99,7 +99,7 @@ class Article(BaseModel):
     top = db.Column(db.SmallInteger)
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
-    reply = db.relationship("Reply", backref="article")
+    Reply = db.relationship("Reply", backref="article", lazy='dynamic')
     count = db.Column(db.Integer, default=int(100))
 
     def __repr__(self):
@@ -183,7 +183,6 @@ class Reply(BaseModel):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
     pid = db.Column(db.Integer)
-    username = db.Column(db.String(64))
     user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
     article_id = db.Column(db.Integer, db.ForeignKey("tb_article.id"))
     reply_time = db.Column(db.DateTime, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

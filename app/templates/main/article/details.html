@@ -11,43 +11,95 @@
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
 {% endblock %}
 {% block nav %}
-<div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="/">首页</a></li>
-            <li><a href="{{ url_for("main.article_lists",name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a></li>
-            <li><a href="" class="active">{{ article.title }}</a></li>
-        </ol>
+    <div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li>
+                    <a href="{{ url_for("main.article_lists",name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
+                </li>
+                <li><a href="" class="active">{{ article.title }}</a></li>
+            </ol>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block main %}
     <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
-            <div style="background: #fff;padding: 30px">
-                <div class="page-header">
-                    <h3>{{ article.title }}</h3>
-                    <span style="color: #0a6999"><a
-                            href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
+        <div style="background: #fff;padding: 30px">
+            <div class="page-header">
+                <h3>{{ article.title }}</h3>
+                <span style="color: #0a6999"><a
+                        href="{{ url_for('main.article_lists',name=article.category_id|getCategory) }}">{{ article.category_id|getCategory }}</a>
                 </span> |
-                    <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
-                    | <span>{{ article.create_time }}</span> |
-                    <span>共有<strong class="text-success">{{ article.count }}</strong>关注了这篇文章</span>
-                </div>
-                <div class="content" style="word-wrap: break-word;">
-                    {{ article.content|safe }}
-                    {% if article.relationship %}
-                        <hr>
-                        {{ article.relationship|safe }}
-                    {% endif %}
+                <span style="color: #0a6999">{{ article.user_id|getUser }}</span>
+                | <span>{{ article.create_time }}</span> |
+                <span>共有<strong class="text-success">{{ article.count }}</strong>关注了这篇文章</span>
+            </div>
+            <div class="content" style="word-wrap: break-word;">
+                {{ article.content|safe }}
+                {% if article.relationship %}
                     <hr>
-                    本文链接:<a
-                        href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>
+                    {{ article.relationship|safe }}
+                {% endif %}
+                <hr>
+                本文链接:<a
+                    href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>
+            </div>
+            <hr>
+            <div class="">
+                <form method="post" id="form_data" class="form form-horizontal">
+                    <label for="input_info">评论：</label>
+                    {{ form.content }}
+                    <input type="hidden" name="user_id" value="">
+                    <input type="hidden" name="pid" value="">
+                    <input type="hidden" name="article_id" value="{{ article.id }}">
+                    <div style="padding-top: 8px">
+                        {{ form.csrf_token }}
+                        {{ form.submit }}
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <div>
+                <div>
+                    <div class="pull-left">评论</div>
+                    <div class="pull-right">共有{{ article.Reply.count() }}条评论</div>
                 </div>
+                <div style="clear: both;height: 15px"></div>
+                {% for vo in comments %}
+                    {% if vo.user_id is none %}
+                        <p><span>游客：</span></p>
+                    {% else %}
+                        <p><span>用户：</span></p>
+                    {% endif %}
+                    <p><span>{{ vo.content|striptags }}</span></p>
+                    <span>{{ moment(vo.reply_time).fromNow() }}</span>
+                    <hr>
+                {% endfor %}
             </div>
         </div>
+    </div>
 {% endblock %}
 {% block js %}
+    <script type="text/javascript" src="{{ url_for('static',filename='admin/lib/layer/2.4/layer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='admin/h-ui.admin/js/dialog.js') }}"></script>
     <script type="text/javascript">
         $("p img").addClass("img-responsive");
     </script>
+    {% for message in get_flashed_messages(category_filter=["error"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.error(msg);
+            }
+        </script>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter=["ok"]) %}
+        <script type="text/javascript">
+            var msg = "{{ message }}";
+            if (msg) {
+                dialog.success(msg);
+            }
+        </script>
+    {% endfor %}
 {% endblock %}
