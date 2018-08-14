@@ -1,4 +1,5 @@
 {% extends "main/base/base.html" %}
+{% import "main/base/page.html" as pg %}
 {% block sking %}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/swiper/css/swiper.min.css") }}">
@@ -41,7 +42,7 @@
 {% block main %}
     <div class="col-xs-12 col-sm-6 col-md-8">
         <div style="background: #fff">
-            {% for vo in result %}
+            {% for vo in result.items %}
                 <div class="media" style="padding: 15px;background: #fff;">
                     {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
                         <div class="media-left media-middle">
@@ -60,6 +61,7 @@
                     </div>
                     <div style="padding-top: 10px;overflow: hidden">
                         <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                        &nbsp;&nbsp;发布于{{ moment(vo.create_time).fromNow(refresh=True) }}
                         <span style="float: right"><a
                                 href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
                     </div>
@@ -67,6 +69,7 @@
                 <hr>
             {% endfor %}
         </div>
+    {{ pg.page(result,"main.index") }}
     </div>
 {% endblock %}
 {% block js %}

@@ -143,6 +143,7 @@ class ArticleForm(FlaskForm):
             markdown=self.markdown.data,
             relationship=self.relationship.data,
             status=self.status.data,
+            create_time=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
         )
         db.session.add(article)
         db.session.commit()

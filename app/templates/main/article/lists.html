@@ -43,6 +43,7 @@
                     </div>
                     <div style="padding-top: 10px;overflow: hidden">
                         <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                        &nbsp;&nbsp;发布于{{ moment(vo.create_time).fromNow(refresh=True) }}
                         <span style="float: right"><a
                                 href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
                     </div>

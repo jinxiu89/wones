@@ -72,11 +72,7 @@
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 <div id="markdown">
-                    <textarea id="markdown-doc" name="markdown-doc" style="display:none;"
-                              placeholder="输入markdown语法右边显示预览"></textarea>
-                    <!-- 注意：name属性的值-->
-                    <textarea id="markdown-html-code" name="content" style="display:none;"></textarea>
-                    <textarea name="markdown" id="markdown" style="display: none;"></textarea>
+                    <textarea name='markdown' style="display:none;"></textarea>
                 </div>
             </div>
         </div>
@@ -163,15 +159,16 @@
                 flowChart: true,
                 sequenceDiagram: true,
                 saveHTMLToTextarea: true,
+                markdown : "##在这里尽情的书写你娴熟的markdown吧",
                 //image upload
                 imageUpload: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL: "{{ url_for('admin.markdown') }}"
             });
         });
-        //拿到 markdown生成的html文档，塞入content中，最后被flask的form调用
-        $(".btn").click(function () {
-            $("#markdown-html-code").text(Editor.getPreviewedHTML());
-        });
+{#        //拿到 markdown生成的html文档，塞入content中，最后被flask的form调用#}
+{#        $(".btn").click(function () {#}
+{#            $("#markdown-html-code").text(Editor.getPreviewedHTML());#}
+{#        });#}
     </script>
 {% endblock %}

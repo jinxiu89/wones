@@ -115,9 +115,10 @@
         <div class="container" style="text-align: center">
             <p>
             <ul class="list-inline">
-                <li>
-                    <a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a>
-                </li>
+                {% for vo in friends %}
+                    <li><a href="{{ vo.website }}"
+                           style="display: block;padding: 4px 0" target="_blank">{{ vo.name }}</a></li>
+                {% endfor %}
             </ul>
             </p>
             <p>&copy; Wones 2013-{{ copy_right }}</p>
