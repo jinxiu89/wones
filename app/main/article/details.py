@@ -12,7 +12,7 @@ from db_exts import db
 @main.route("/article/details/<int:id>", methods=["GET", "POST"])
 def article_details(id):
     article = Article.query.filter_by(id=id).first_or_404()
-    comments = article.Reply.order_by(Reply.id.asc())
+    comments = article.Reply.filter_by(is_show=1).order_by(Reply.id.asc())
     form = ReplyForm()
     if article.count is None:
         article.count = 1

@@ -10,38 +10,38 @@
     <meta name="keywords" content="Wones">
 {% endblock %}
 {% block nav %}
-<div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
-    <div class="container">
-        <ol class="breadcrumb">
-            <li class="active"><a href="/">首页</a></li>
-        </ol>
+    <div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="active"><a href="/">首页</a></li>
+            </ol>
+        </div>
     </div>
-</div>
 {% endblock %}
 {% block banner %}
-{#    <div style="margin-bottom: 15px">#}
-{#        <div class="swiper-container">#}
-{#            <div class="swiper-wrapper">#}
-{#                {% for vo in banner %}#}
-{#                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"#}
-{#                                                                         src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">#}
-{#                    </div>#}
-{#                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"#}
-{#                                                                          src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">#}
-{#                    </div>#}
-{#                {% endfor %}#}
-{#            </div>#}
-{#            <!-- Add Pagination -->#}
-{#            <div class="swiper-pagination"></div>#}
-{#            <!-- Add Arrows -->#}
-{#            <div class="swiper-button-next"></div>#}
-{#            <div class="swiper-button-prev"></div>#}
-{#        </div>#}
-{#    </div>#}
+    {#    <div style="margin-bottom: 15px">#}
+    {#        <div class="swiper-container">#}
+    {#            <div class="swiper-wrapper">#}
+    {#                {% for vo in banner %}#}
+    {#                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"#}
+    {#                                                                         src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">#}
+    {#                    </div>#}
+    {#                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"#}
+    {#                                                                          src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">#}
+    {#                    </div>#}
+    {#                {% endfor %}#}
+    {#            </div>#}
+    {#            <!-- Add Pagination -->#}
+    {#            <div class="swiper-pagination"></div>#}
+    {#            <!-- Add Arrows -->#}
+    {#            <div class="swiper-button-next"></div>#}
+    {#            <div class="swiper-button-prev"></div>#}
+    {#        </div>#}
+    {#    </div>#}
 {% endblock %}
 {% block main %}
-    <div class="col-xs-12 col-sm-6 col-md-8">
-        <div style="background: #fff">
+    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff">
+        <div>
             {% for vo in result.items %}
                 <div class="media" style="padding: 15px;background: #fff;">
                     {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
@@ -69,7 +69,11 @@
                 <hr>
             {% endfor %}
         </div>
-    {{ pg.page(result,"main.index") }}
+    </div>
+{% endblock %}
+{% block page %}
+    <div class="col-xs-12 col-sm-6 col-md-8">
+        {{ pg.page(result,"main.index") }}
     </div>
 {% endblock %}
 {% block js %}

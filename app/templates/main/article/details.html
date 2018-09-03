@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/edit.markdown/css/editormd.css") }}">
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
+    <style>
+    .editormd-html-preview{
+        padding: 0px;
+    }
+    </style>
 {% endblock %}
 {% block nav %}
     <div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
@@ -24,8 +29,8 @@
     </div>
 {% endblock %}
 {% block main %}
-    <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
-        <div style="background: #fff;padding: 30px">
+    <div class="col-xs-12 col-md-8" style="background: #fff;padding-bottom: 15px">
+        <div style="padding: 30px 10px">
             <div class="page-header">
                 <h3>{{ article.title }}</h3>
                 <span style="color: #0a6999"><a
@@ -69,7 +74,7 @@
             <div>
                 <div>
                     <div class="pull-left">评论</div>
-                    <div class="pull-right">共有{{ article.Reply.count() }}条评论</div>
+                    <div class="pull-right">共有{{ article.Reply.filter_by(is_show=1).count() }}条评论</div>
                 </div>
                 <div style="clear: both;height: 15px"></div>
                 {% for vo in comments %}

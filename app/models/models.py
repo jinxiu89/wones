@@ -191,6 +191,18 @@ class Reply(BaseModel):
     def __repr__(self):
         return "<content %r>" % self.content
 
+    @staticmethod
+    def action(reply):
+        db.session.add(reply)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def delete(reply):
+        db.session.delete(reply)
+        if db.session.commit():
+            return True
+
 
 class Images(BaseModel):
     __tablename__ = "tb_images"

@@ -16,7 +16,6 @@ def ad():
     query = Ad.query
     count = query.count()
     result = query.all()
-    print(count)
     return render_template("admin/content/ad/index.html", count=count, result=result)
 
 
