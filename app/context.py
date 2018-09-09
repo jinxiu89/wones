@@ -20,7 +20,7 @@ def navbar():
 @app.context_processor
 def hot():
     """
-    输入热门王文章
+    输入热门文章
     :return:
     """
     from app.models.models import Article
