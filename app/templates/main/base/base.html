@@ -13,6 +13,7 @@
     <link href="{{ url_for("static",filename="main/favicon.ico") }}" rel="icon" type="image/png">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for("static",filename="main/style/style.css") }}">
     {% block sking %}
         <!-- Custom styles for this template -->
 
@@ -52,27 +53,64 @@
         </div>
     </nav>
 {% endblock %}
+{% block nav %}
+    <div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
 {% block banner %}
     <!-- Jumbotron -->
 {% endblock %}
-<main class="benefits container" style="padding-top: 20px">
+<main class="benefits container">
     <div class="row">
         {% block main %}
             <!--页面主体在这里展开-->
         {% endblock %}
         {% block main_left %}
-            <div class="col-xs-12 col-md-4" style="padding: 15px">
-                <div style="background:#fff;padding: 15px">
-                    <h4>最热门文章</h4>
+            <div class="col-xs-12 col-md-4" style="background: #ffffff">
+                <div style="padding: 15px;background: #fff">
+                    <h4 style="padding-bottom: 5px;border-bottom: 1px solid #f2f2f2">最热门文章</h4>
                     <ul class="nav">
                         {% for vo in hot_article %}
                             <li class=""><a href="{{ url_for("main.article_details",id=vo.id) }}"
-                                            style="display: block;padding: 4px 20px">{{ vo.title }}</a></li>
+                                            style="display: block;padding: 4px 0">{{ vo.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4" style="background: #ffffff">
+                <div style="padding: 15px;margin-top:15px;background: #fff">
+                    <h4 style="padding-bottom: 5px;border-bottom: 1px solid #f2f2f2">好文推荐</h4>
+                    <ul class="nav">
+                        {% for vo in top_article %}
+                            <li><a href="{{ url_for("main.article_details",id=vo.id) }}"
+                                   style="display: block;padding: 4px 0">{{ vo.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4" style="background: #ffffff">
+                <div style="padding: 15px;margin-top:15px;background: #fff">
+                    <h4 style="padding-bottom: 5px;border-bottom: 1px solid #f2f2f2">我的朋友</h4>
+                    <ul class="nav">
+                        {% for vo in friends %}
+                            <li>
+                                <a href="{{ vo.website }}"
+                                   style="display: block;padding: 4px 0">{{ vo.name }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
         {% endblock %}
+    {% block page %}
+    {% endblock %}
     </div>
 </main>
 {% block footer %}
@@ -81,9 +119,10 @@
         <div class="container" style="text-align: center">
             <p>
             <ul class="list-inline">
-                <li>
-                    <a href="https://www.nodeapp.cn/" target="_blank">Nodejs中文文档</a>
-                </li>
+                {% for vo in friends %}
+                    <li><a href="{{ vo.website }}"
+                           style="display: block;padding: 4px 0" target="_blank">{{ vo.name }}</a></li>
+                {% endfor %}
             </ul>
             </p>
             <p>&copy; Wones 2013-{{ copy_right }}</p>
@@ -94,6 +133,8 @@
 <script src="https://cdn.bootcss.com/highlight.js/8.4/highlight.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{ moment.include_moment() }}
+{{ moment.lang('zh-CN') }}
 {% block js %}{% endblock %}
 </body>
 </html>

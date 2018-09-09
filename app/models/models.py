@@ -96,9 +96,10 @@ class Article(BaseModel):
     image = db.Column(db.String(255))
     content = db.Column(db.Text)
     markdown = db.Column(db.Text)
+    top = db.Column(db.SmallInteger)
     relationship = db.Column(db.Text)
     status = db.Column(db.SmallInteger)
-    reply = db.relationship("Reply", backref="article")
+    Reply = db.relationship("Reply", backref="article", lazy='dynamic')
     count = db.Column(db.Integer, default=int(100))
 
     def __repr__(self):
@@ -130,10 +131,46 @@ class Banner(BaseModel):
         db.session.commit()
         return True
 
+    @staticmethod
     def delete(banner):
         if banner.image and os.path.exists(current_app.config.get('IMG_DIR') + banner.image):
             os.remove(current_app.config.get('IMG_DIR') + banner.image)
         db.session.delete(banner)
+        db.session.commit()
+        return True
+
+
+class Friends(BaseModel):
+    """
+    友情链接字段
+    """
+    __tablename__ = "tb_friends"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64))
+    website = db.Column(db.String(255))
+    website_logo = db.Column(db.String(255))
+    is_show = db.Column(db.SmallInteger, default=int(2))
+
+    def __repr__(self):
+        return "<name %r>" % self.name
+
+    @staticmethod
+    def stop(result):
+        db.session.add(result)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def start(result):
+        db.session.add(result)
+        db.session.commit()
+        return True
+
+    @staticmethod
+    def delete(result):
+        if result.website_logo and os.path.exists(current_app.config.get('IMG_DIR') + result.website_logo):
+            os.remove(current_app.config.get('IMG_DIR') + result.website_logo)
+        db.session.delete(result)
         db.session.commit()
         return True
 
@@ -145,13 +182,26 @@ class Reply(BaseModel):
     __tablename__ = "tb_reply"
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
+    pid = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
     article_id = db.Column(db.Integer, db.ForeignKey("tb_article.id"))
-    reply_time = db.Column(db.DateTime, default=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    reply_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
     is_show = db.Column(db.SmallInteger, default=int(2))
 
     def __repr__(self):
         return "<content %r>" % self.content
+
+    @staticmethod
+    def action(reply):
+        db.session.add(reply)
+        if db.session.commit():
+            return True
+
+    @staticmethod
+    def delete(reply):
+        db.session.delete(reply)
+        if db.session.commit():
+            return True
 
 
 class Images(BaseModel):

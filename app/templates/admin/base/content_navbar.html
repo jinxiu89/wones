@@ -17,11 +17,27 @@
                 </ul>
             </dd>
         </dl>
+        <dl id="menu-friend">
+            <dt><i class="Hui-iconfont">&#xe613;</i> 朋友圈管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="friend"><a href="{{ url_for("admin.friend") }}" title="广告管理">朋友圈管理</a></li>
+                </ul>
+            </dd>
+        </dl>
         <dl id="menu-article">
             <dt><i class="Hui-iconfont">&#xe616;</i> 文章管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
                     <li id="article"><a href="{{ url_for("admin.article") }}" title="文章管理">文章管理</a></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl id="menu-comments">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li id="comments"><a href="{{ url_for("admin.article") }}" title="评论管理">评论管理</a></li>
                 </ul>
             </dd>
         </dl>

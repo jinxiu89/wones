@@ -5,7 +5,7 @@ from flask import Blueprint
 
 admin = Blueprint("admin", __name__, url_prefix="/admin")
 from .system import user, category
-from .content import article, banner, ad
+from .content import article, banner, ad, friend, comments
 from .dashboard import index
 from .login import login, logout
 from .upload import upload

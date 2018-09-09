@@ -29,5 +29,23 @@ def hot():
 
 
 @app.context_processor
+def top():
+    """
+    输入好文推荐
+    :return:
+    """
+    from app.models.models import Article
+    top_article = Article.query.filter(Article.top == 1).order_by(Article.id.desc()).limit(5).all()
+    return dict(top_article=top_article)
+
+
+@app.context_processor
+def friend():
+    from app.models.models import Friends
+    friends = Friends.query.filter(Friends.is_show == 1).order_by(Friends.id.desc()).all()
+    return dict(friends=friends)
+
+
+@app.context_processor
 def copy_right():
     return dict(copy_right=datetime.datetime.now().year)

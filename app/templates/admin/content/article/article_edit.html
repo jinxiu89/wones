@@ -6,6 +6,15 @@
 {% block form %}
     <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
         <div class="row cl">
+            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.top.label }}：</div>
+            <div class="formControls col-xs-4 col-sm-3">
+                {{ form.top }}
+                {% for error in form.top.errors %}
+                    <span class="c-red">{{ error }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row cl">
             <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.category_id.label }}：</div>
             <div class="formControls col-xs-4 col-sm-3">
                 <span class="select-box">{{ form.category_id }}</span>
@@ -67,7 +76,6 @@
                               placeholder="输入markdown语法右边显示预览">{{ result.markdown }}</textarea>
                     <!-- 注意：name属性的值-->
                     <textarea id="markdown-html-code" name="content" style="display:none;"></textarea>
-{#                    <textarea name="markdown" id="markdown" style="display: none;"></textarea>#}
                 </div>
             </div>
         </div>

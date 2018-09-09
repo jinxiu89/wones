@@ -21,9 +21,9 @@ def get_user(id):
 
 @app.template_filter("cutTitle")
 def cut_str(string):
-    return string[0:18]
+    return string[0:32]
 
 
 @app.template_filter("cutDes")
 def cut_des(string):
-    return string[0:32] + "..."
+    return string[0:64] + "..."

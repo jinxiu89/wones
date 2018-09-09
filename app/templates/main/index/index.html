@@ -1,4 +1,5 @@
 {% extends "main/base/base.html" %}
+{% import "main/base/page.html" as pg %}
 {% block sking %}
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="lib/swiper/css/swiper.min.css") }}">
@@ -8,45 +9,71 @@
     <meta name="description" content="">
     <meta name="keywords" content="Wones">
 {% endblock %}
-{% block banner %}
-    <div style="padding-top: 50px;">
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                {% for vo in banner %}
-                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"
-                                                                 src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">
-                    </div>
-                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"
-                                                                 src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">
-                    </div>
-                {% endfor %}
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-            <!-- Add Arrows -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+{% block nav %}
+    <div class="" style="background: #ffffff;padding-top: 50px;margin-bottom: 15px">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="active"><a href="/">首页</a></li>
+            </ol>
         </div>
     </div>
 {% endblock %}
+{% block banner %}
+    {#    <div style="margin-bottom: 15px">#}
+    {#        <div class="swiper-container">#}
+    {#            <div class="swiper-wrapper">#}
+    {#                {% for vo in banner %}#}
+    {#                    <div class="swiper-slide visible-lg visible-md"><img style="height: auto;width: 100%"#}
+    {#                                                                         src="{{ url_for('static',filename="uploads/images/"+vo.image) }}">#}
+    {#                    </div>#}
+    {#                    <div class="swiper-slide visible-sm visible-xs "><img style="height: auto;width: 100%"#}
+    {#                                                                          src="{{ url_for('static',filename="uploads/images/"+vo.smallimage) }}">#}
+    {#                    </div>#}
+    {#                {% endfor %}#}
+    {#            </div>#}
+    {#            <!-- Add Pagination -->#}
+    {#            <div class="swiper-pagination"></div>#}
+    {#            <!-- Add Arrows -->#}
+    {#            <div class="swiper-button-next"></div>#}
+    {#            <div class="swiper-button-prev"></div>#}
+    {#        </div>#}
+    {#    </div>#}
+{% endblock %}
 {% block main %}
+    <div class="col-xs-12 col-sm-6 col-md-8" style="background: #fff">
+        <div>
+            {% for vo in result.items %}
+                <div class="media" style="padding: 15px;background: #fff;">
+                    {% if vo.image != "2018050722270661fd4c28611e419aa555c6d4f38691e3.jpeg" %}
+                        <div class="media-left media-middle">
+                            <a href="#">
+                                <img class="media-object"
+                                     src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
+                                     alt="占位"
+                                     style="width: 95px;height: 95px;">
+                            </a>
+                        </div>
+                    {% endif %}
+                    <div class="media-body">
+                        <h4 class="media-heading"><a
+                                href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
+                        <p>{{ vo.description|cutDes }}</p>
+                    </div>
+                    <div style="padding-top: 10px;overflow: hidden">
+                        <span style="float: left">{{ vo.category_id|getCategory }}</span>
+                        &nbsp;&nbsp;发布于{{ moment(vo.create_time).fromNow(refresh=True) }}
+                        <span style="float: right"><a
+                                href="{{ url_for("main.article_details",id=vo.id) }}">更多</a></span>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block page %}
     <div class="col-xs-12 col-sm-6 col-md-8">
-        {% for vo in result %}
-            <div class="media" style="padding: 15px;background: #fff;">
-                <div class="media-left media-middle">
-                    <a href="{{ url_for("main.article_details",id=vo.id) }}" style="width: 90px;display: block">
-                        <img class="media-object img-responsive" src="{{ url_for("static",filename="uploads/images/"+vo.image) }}"
-                             alt="占位" >
-                    </a>
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading"><a
-                            href="{{ url_for("main.article_details",id=vo.id) }}">{{ vo.title|cutTitle }}</a></h4>
-                    <p>{{ vo.description|cutDes }}</p>
-                    <span>{{ vo.category_id|getCategory }}</span>
-                </div>
-            </div>
-        {% endfor %}
+        {{ pg.page(result,"main.index") }}
     </div>
 {% endblock %}
 {% block js %}

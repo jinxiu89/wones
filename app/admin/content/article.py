@@ -3,6 +3,7 @@
 # author:jinxiu89@163.com
 # create by thomas on 18-3-22.
 from flask import flash, request, jsonify
+
 from app.admin.content import *
 from app.decorate import admin_login
 from app.forms.article import ArticleForm
@@ -51,6 +52,7 @@ def article_edit(id=None):
     form.category_id.choices = category
     result = Article.query.get_or_404(id)
     if request.method == "GET":
+        form.top.data = result.top
         form.category_id.data = result.category_id
         form.description.data = result.description
         form.content.data = result.content
@@ -59,7 +61,6 @@ def article_edit(id=None):
     if request.method == "POST":
         if form.validate_on_submit():
             data = form.data
-            print(data['markdown'])
             if form.edit(result):
                 flash("保存成功", "ok")
             else:
