@@ -14,11 +14,12 @@ def article_details(id):
     article = Article.query.filter_by(id=id).first_or_404()
     comments = article.Reply.filter_by(is_show=1).order_by(Reply.id.asc())
     form = ReplyForm()
-    if article.count is None:
-        article.count = 1
-    article.count = article.count + 1
-    db.session.add(article)
-    db.session.commit()
+    # if int(session['count']) <= 1:
+    #     if article.count is None:
+    #         article.count = 1
+    #     article.count = article.count + 1
+    #     db.session.add(article)
+    #     db.session.commit()
     if request.method == "POST":
         if form.validate_on_submit():
             data = form.data
