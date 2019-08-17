@@ -49,13 +49,13 @@ def admin_permission(f):
     return req
 
 
-# def set_count(f):
-#     @wraps(f)
-#     def req(*args, **kwargs):
-#         if session.get('count') is None:
-#             session['count'] = 1
-#         else:
-#             session['count'] = int(session.get('count')) + 1
-#         return f(*args, **kwargs)
-#
-#     return req
+def set_count(f):
+    @wraps(f)
+    def req(*args, **kwargs):
+        if session.get('count') is None:
+            session['count'] = 1
+        else:
+            session['count'] = int(session.get('count')) + 1
+        return f(*args, **kwargs)
+
+    return req

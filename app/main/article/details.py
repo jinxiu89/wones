@@ -14,24 +14,28 @@ def article_details(id):
     article = Article.query.filter_by(id=id).first_or_404()
     comments = article.Reply.filter_by(is_show=1).order_by(Reply.id.asc())
     form = ReplyForm()
-    # if int(session['count']) <= 1:
-    #     if article.count is None:
-    #         article.count = 1
-    #     article.count = article.count + 1
-    #     db.session.add(article)
-    #     db.session.commit()
+    if request.method == 'GET':
+        if article.count is None:
+            article.count = 1
+        article.count = article.count + 1
+        db.session.add(article)
+        db.session.commit()
+    if request.method == 'POST':
+        form.create()
+        flash("评论成功，但是你得让我看看是不是合我的胃口^_^！", "ok")
+        return redirect(request.referrer)
+    return render_template('main/article/details.html', article=article, comments=comments, form=form)
+
+
+@main.route("/article/details/reply", methods=['POST'])
+def details_reply():
+    form = ReplyForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            data = form.data
-            reply = Reply(
-                content=data['content'],
-                pid=data['pid'],
-                article_id=data['article_id'],
-                user_id=session.get("id"),
-                is_show=int(2)
-            )
-            db.session.add(reply)
-            db.session.commit()
+
             flash("评论成功，但是你得让我看看是不是合我的胃口^_^！", "ok")
-        return redirect(url_for('main.article_details', id=article.id))
-    return render_template('main/article/details.html', article=article, comments=comments, form=form)
+            if form.create():
+                flash("评论成功，但是你得让我看看是不是合我的胃口^_^！", "ok")
+        else:
+            flash("没保存！保存方法有问题", 'error')
+        return redirect(request.referrer)

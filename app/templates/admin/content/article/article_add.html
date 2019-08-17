@@ -6,7 +6,7 @@
 {% block form %}
     <form role="form" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.top.label }}：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.top.label }}：</div>
             <div class="formControls col-xs-4 col-sm-3">
                 {{ form.top }}
                 {% for error in form.top.errors %}
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.category_id.label }}：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.category_id.label }}：</div>
             <div class="formControls col-xs-4 col-sm-3">
                 <span class="select-box">{{ form.category_id }}</span>
                 {% for error in form.category_id.errors %}
@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>文章封面图片：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>文章封面图片：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.image }}
                 {% for error in form.image.errors %}
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.title.label }}：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.title.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.title }}
                 {% for error in form.title.errors %}
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.url_title.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.url_title }}
                 {% for error in form.url_title.errors %}
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.keywords.label }}：</div>
             <div class="formControls col-xs-8 col-sm-9">
                 {{ form.keywords }}
                 {% for error in form.keywords.errors %}
@@ -60,8 +60,8 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.description.label }}：</div>
-            <div class="formControls col-xs-8 col-sm-9">
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.description.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-11">
                 {{ form.description }}
                 {% for error in form.description.errors %}
                     <span class="c-red">{{ error }}</span>
@@ -69,16 +69,16 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.content.label }}：</div>
-            <div class="formControls col-xs-8 col-sm-9">
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.content.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-11">
                 <div id="markdown">
                     <textarea name='markdown' style="display:none;"></textarea>
                 </div>
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.relationship.label }}：</div>
-            <div class="formControls col-xs-8 col-sm-9">
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.relationship.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-11">
                 {{ form.relationship }}
                 {% for error in form.relationship.errors %}
                     <span class="c-red">{{ error }}</span>
@@ -86,8 +86,8 @@
             </div>
         </div>
         <div class="row cl">
-            <div class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>{{ form.status.label }}：</div>
-            <div class="formControls col-xs-8 col-sm-9">
+            <div class="form-label col-xs-4 col-sm-1"><span class="c-red">*</span>{{ form.status.label }}：</div>
+            <div class="formControls col-xs-8 col-sm-2">
                 {{ form.status }}
                 {% for error in form.status.errors %}
                     <span class="c-red">{{ error }}</span>
@@ -166,9 +166,5 @@
                 imageUploadURL: "{{ url_for('admin.markdown') }}"
             });
         });
-{#        //拿到 markdown生成的html文档，塞入content中，最后被flask的form调用#}
-{#        $(".btn").click(function () {#}
-{#            $("#markdown-html-code").text(Editor.getPreviewedHTML());#}
-{#        });#}
     </script>
 {% endblock %}

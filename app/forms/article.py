@@ -150,7 +150,7 @@ class ArticleForm(FlaskForm):
         return article
 
     def edit(self, article):
-        article.top=self.top.data
+        article.top = self.top.data
         article.user_id = session.get("id")
         article.category_id = self.category_id.data
         article.title = self.title.data

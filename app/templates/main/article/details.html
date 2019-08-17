@@ -10,9 +10,9 @@
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ url_for("static",filename="main/article/article.css") }}">
     <style>
-    .editormd-html-preview{
-        padding: 0px;
-    }
+        .editormd-html-preview {
+            padding: 0px;
+        }
     </style>
 {% endblock %}
 {% block nav %}
@@ -60,6 +60,9 @@
             <div class="">
                 <form method="post" id="form_data" class="form form-horizontal">
                     <label for="input_info">评论：</label>
+                    {% for error in form.content.errors %}
+                        <span style="color: red">{{ error }}</span>
+                    {% endfor %}
                     {{ form.content }}
                     <input type="hidden" name="user_id" value="">
                     <input type="hidden" name="pid" value="">
