@@ -57,60 +57,60 @@
                     href="http://blog.motkit.com{{ url_for("main.article_details",id=article.id) }}">{{ article.title }}</a>
             </div>
             <hr>
-            <div class="">
-                <form method="post" id="form_data" class="form form-horizontal">
-                    <label for="input_info">评论：</label>
-                    {% for error in form.content.errors %}
-                        <span style="color: red">{{ error }}</span>
-                    {% endfor %}
-                    {{ form.content }}
-                    <input type="hidden" name="user_id" value="">
-                    <input type="hidden" name="pid" value="">
-                    <input type="hidden" name="article_id" value="{{ article.id }}">
-                    <div style="padding-top: 8px">
-                        {{ form.csrf_token }}
-                        {{ form.submit }}
-                    </div>
-                </form>
-            </div>
-            <hr>
-            <div>
-                <div>
-                    <div class="pull-left">评论</div>
-                    <div class="pull-right">共有{{ article.Reply.filter_by(is_show=1).count() }}条评论</div>
-                </div>
-                <div style="clear: both;height: 15px"></div>
-                {% for vo in comments %}
-                    <div class="media" style="padding: 15px;background: #fff;">
-                        {% if vo.user_id %}
-                            <div class="media-left media-middle">
+{#            <div class="">#}
+{#                <form method="post" id="form_data" class="form form-horizontal">#}
+{#                    <label for="input_info">评论：</label>#}
+{#                    {% for error in form.content.errors %}#}
+{#                        <span style="color: red">{{ error }}</span>#}
+{#                    {% endfor %}#}
+{#                    {{ form.content }}#}
+{#                    <input type="hidden" name="user_id" value="">#}
+{#                    <input type="hidden" name="pid" value="">#}
+{#                    <input type="hidden" name="article_id" value="{{ article.id }}">#}
+{#                    <div style="padding-top: 8px">#}
+{#                        {{ form.csrf_token }}#}
+{#                        {{ form.submit }}#}
+{#                    </div>#}
+{#                </form>#}
+{#            </div>#}
+{#            <hr>#}
+{#            <div>#}
+{#                <div>#}
+{#                    <div class="pull-left">评论</div>#}
+{#                    <div class="pull-right">共有{{ article.Reply.filter_by(is_show=1).count() }}条评论</div>#}
+{#                </div>#}
+{#                <div style="clear: both;height: 15px"></div>#}
+{#                {% for vo in comments %}#}
+{#                    <div class="media" style="padding: 15px;background: #fff;">#}
+{#                        {% if vo.user_id %}#}
+{#                            <div class="media-left media-middle">#}
                                 {#                                <img class="media-object img-responsive"#}
                                 {#                                     src="#"#}
                                 {#                                     alt="占位">#}
-                            </div>
-                        {% endif %}
-                        <div class="media-body">
-                            <div class="media-heading">
-                                <div class="pull-left">
-                                    {% if vo.user_id is none %}
-                                        <span>游客：</span>
-                                    {% else %}
-                                        <span>{{ vo.user_id|getUser }}：</span>
-                                    {% endif %}
-                                </div>
-                                <div class="pull-right">
-                                    <span style="float: right"><a
-                                            href="{{ url_for("main.article_details",id=article.id) }}">{{ moment(vo.reply_time).fromNow(refresh=True) }}</a></span>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p>{{ vo.content|striptags }}</p>
-                            <div class="pull-right"><a href="#">回复</a></div>
-                        </div>
-                    </div>
-                    <hr>
-                {% endfor %}
-            </div>
+{#                            </div>#}
+{#                        {% endif %}#}
+{#                        <div class="media-body">#}
+{#                            <div class="media-heading">#}
+{#                                <div class="pull-left">#}
+{#                                    {% if vo.user_id is none %}#}
+{#                                        <span>游客：</span>#}
+{#                                    {% else %}#}
+{#                                        <span>{{ vo.user_id|getUser }}：</span>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                                <div class="pull-right">#}
+{#                                    <span style="float: right"><a#}
+{#                                            href="{{ url_for("main.article_details",id=article.id) }}">{{ moment(vo.reply_time).fromNow(refresh=True) }}</a></span>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="clearfix"></div>#}
+{#                            <p>{{ vo.content|striptags }}</p>#}
+{#                            <div class="pull-right"><a href="#">回复</a></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <hr>#}
+{#                {% endfor %}#}
+{#            </div>#}
         </div>
     </div>
 {% endblock %}

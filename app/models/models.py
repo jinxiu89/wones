@@ -5,6 +5,7 @@
 from app.models import *
 from flask import current_app
 
+
 class BaseModel(db.Model):
     __abstract__ = True
     create_time = db.Column(db.DateTime, default=datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
@@ -52,7 +53,6 @@ class Category(BaseModel):
 
     def __repr__(self):
         return '<name %r>' % self.name
-
 
 
 class Ad(BaseModel):
